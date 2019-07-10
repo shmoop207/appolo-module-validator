@@ -1,16 +1,8 @@
-import {IsString, MinLength, IsNumber, ValidateNested} from "class-validator";
 import {define, singleton} from "appolo";
 import {validate, transform, transformAfter} from "../../../../index";
+import {DataDto, DataDto3} from "../common/common";
 
-export class DataDto {
-    @IsString()
-    name: string;
-}
 
-export class DataDto3 {
-    @IsNumber()
-    name: number;
-}
 
 @define()
 @singleton()

@@ -8,4 +8,6 @@ import {ValidatorOptions} from "class-validator";
 import {ClassTransformOptions} from "class-transformer";
 
 export {ValidationModule, validate, IOptions, ValidatorOptions, ClassTransformOptions,transform,transformAfter}
+export *  from "class-validator"
+export *  from "class-transformer"
 

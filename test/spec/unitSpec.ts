@@ -5,7 +5,8 @@ import {App, createApp} from 'appolo';
 import sinon = require("sinon");
 import sinonChai = require("sinon-chai");
 import chaiHttp = require("chai-http");
-import {SomeManager, DataDto, DataDto3} from "../mock/src/controllers/someManager";
+import {SomeManager} from "../mock/src/controllers/someManager";
+import {DataDto, DataDto3} from "../mock/src/common/common";
 
 let should = chai.should();
 chai.use(chaiHttp);
@@ -214,7 +215,7 @@ describe('validations e2e', () => {
 
             let result = await manager.getData5({name2: 1});
 
-            (result.constructor === DataDto3).should.be.ok;
+            //(result.constructor === DataDto3).should.be.ok;
 
             result.should.be.instanceOf(DataDto3)
         })

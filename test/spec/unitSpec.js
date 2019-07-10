@@ -6,6 +6,7 @@ const appolo_1 = require("appolo");
 const sinonChai = require("sinon-chai");
 const chaiHttp = require("chai-http");
 const someManager_1 = require("../mock/src/controllers/someManager");
+const common_1 = require("../mock/src/common/common");
 let should = chai.should();
 chai.use(chaiHttp);
 chai.use(sinonChai);
@@ -79,7 +80,7 @@ describe('validations e2e', () => {
         });
         it('should call  validations on method', async () => {
             let manager = app.injector.get(someManager_1.SomeManager);
-            let data = new someManager_1.DataDto();
+            let data = new common_1.DataDto();
             data.name = "aa";
             let result;
             try {
@@ -91,7 +92,7 @@ describe('validations e2e', () => {
         });
         it('should call invalid validations on method', async () => {
             let manager = app.injector.get(someManager_1.SomeManager);
-            let data = new someManager_1.DataDto();
+            let data = new common_1.DataDto();
             try {
                 data = await manager.getData(data);
             }
@@ -101,7 +102,7 @@ describe('validations e2e', () => {
         });
         it('should call invalid validate arg', async () => {
             let manager = app.injector.get(someManager_1.SomeManager);
-            let data = new someManager_1.DataDto();
+            let data = new common_1.DataDto();
             try {
                 data = await manager.getData2(data);
             }
@@ -111,7 +112,7 @@ describe('validations e2e', () => {
         });
         it('should call valid validate arg with custom dto', async () => {
             let manager = app.injector.get(someManager_1.SomeManager);
-            let data = new someManager_1.DataDto3();
+            let data = new common_1.DataDto3();
             data.name = 3;
             let result;
             try {
@@ -123,7 +124,7 @@ describe('validations e2e', () => {
         });
         it('should call invalid validate arg with custom dto', async () => {
             let manager = app.injector.get(someManager_1.SomeManager);
-            let data = new someManager_1.DataDto();
+            let data = new common_1.DataDto();
             try {
                 data = await manager.getData3(data);
             }
@@ -139,8 +140,8 @@ describe('validations e2e', () => {
         it('should call transform after dto', async () => {
             let manager = app.injector.get(someManager_1.SomeManager);
             let result = await manager.getData5({ name2: 1 });
-            (result.constructor === someManager_1.DataDto3).should.be.ok;
-            result.should.be.instanceOf(someManager_1.DataDto3);
+            //(result.constructor === DataDto3).should.be.ok;
+            result.should.be.instanceOf(common_1.DataDto3);
         });
     });
 });

@@ -1,5 +1,5 @@
 {
-  "name": "@appolo/validation",
+  "name": "@appolo/validator",
   "version": "0.0.8",
   "description": "appolo validator module",
   "keywords": [
@@ -10,7 +10,7 @@
     "access": "public"
   },
   "dependencies": {
-    "appolo": "^6.0.79",
+    "appolo": "^6.0.84",
     "appolo-utils": "0.0.9",
     "class-transformer": "^0.2.3",
     "class-validator": "^0.9.1",

@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+const tslib_1 = require("tslib");
 const validationModule_1 = require("./module/validationModule");
 exports.ValidationModule = validationModule_1.ValidationModule;
 const validateDecorator_1 = require("./module/src/decorators/validateDecorator");
@@ -8,4 +9,6 @@ const transformAfterDecorator_1 = require("./module/src/decorators/transformAfte
 exports.transformAfter = transformAfterDecorator_1.transformAfter;
 const transformDecorator_1 = require("./module/src/decorators/transformDecorator");
 exports.transform = transformDecorator_1.transform;
+tslib_1.__exportStar(require("class-validator"), exports);
+tslib_1.__exportStar(require("class-transformer"), exports);
 //# sourceMappingURL=index.js.map
