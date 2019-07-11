@@ -12,16 +12,13 @@ chai.use(chaiHttp);
 chai.use(sinonChai);
 describe('validations e2e', () => {
     let app;
-    beforeEach(async () => {
+    before(async () => {
         app = appolo_1.createApp({
             port: 8183,
             environment: "testing",
             root: process.cwd() + '/test/mock/',
         });
         await app.launch();
-    });
-    afterEach(async () => {
-        await app.reset();
     });
     describe('validations', function () {
         it('should should call with validation error', async () => {

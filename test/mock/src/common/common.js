@@ -16,4 +16,11 @@ tslib_1.__decorate([
     tslib_1.__metadata("design:type", Number)
 ], DataDto3.prototype, "name", void 0);
 exports.DataDto3 = DataDto3;
+class DataDtoInherit extends DataDto3 {
+}
+tslib_1.__decorate([
+    class_validator_1.IsNumber(),
+    tslib_1.__metadata("design:type", Number)
+], DataDtoInherit.prototype, "name2", void 0);
+exports.DataDtoInherit = DataDtoInherit;
 //# sourceMappingURL=common.js.map

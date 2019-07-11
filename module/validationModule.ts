@@ -2,7 +2,7 @@ import {Module, module, Util, Hooks, BadRequestError} from "appolo/index";
 import {IOptions} from "../index";
 import * as _ from "lodash";
 import {plainToClass} from "class-transformer";
-import {validate, ValidationError} from "class-validator";
+import {getFromContainer, MetadataStorage, validate, ValidationError} from "class-validator";
 import {Defaults} from "./src/defaults";
 import {ValidatePipeLine} from "./src/pipelines/validatePipeline";
 import {TransformPipeline} from "./src/pipelines/transformPipeline";
@@ -18,8 +18,18 @@ export class ValidationModule extends Module<IOptions> {
         super(opts);
     }
 
+    protected beforeInitialize() {
+        let metaDataValidator = getFromContainer<MetadataStorage>(MetadataStorage)
+
+        _.forEach((metaDataValidator as any).validationMetadatas, item => {
+            if (item && item.groups && item.groups.length == 0) {
+                item.always = true;
+            }
+        })
+    }
+
     get exports() {
-        return [ValidatePipeLine,TransformPipeline,TransformAfterPipeline]
+        return [ValidatePipeLine, TransformPipeline, TransformAfterPipeline]
 
     }
 

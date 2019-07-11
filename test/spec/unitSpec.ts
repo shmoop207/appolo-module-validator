@@ -15,7 +15,7 @@ chai.use(sinonChai);
 describe('validations e2e', () => {
     let app: App;
 
-    beforeEach(async () => {
+    before(async () => {
         app = createApp({
             port: 8183,
             environment: "testing",
@@ -25,9 +25,6 @@ describe('validations e2e', () => {
         await app.launch();
     });
 
-    afterEach(async () => {
-        await app.reset();
-    });
 
 
     describe('validations', function () {
