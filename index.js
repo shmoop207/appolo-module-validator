@@ -9,6 +9,8 @@ const transformAfterDecorator_1 = require("./module/src/decorators/transformAfte
 exports.transformAfter = transformAfterDecorator_1.transformAfter;
 const transformDecorator_1 = require("./module/src/decorators/transformDecorator");
 exports.transform = transformDecorator_1.transform;
+const isObject_1 = require("./module/src/validators/isObject");
+exports.IsObject = isObject_1.IsObject;
 tslib_1.__exportStar(require("class-validator"), exports);
 tslib_1.__exportStar(require("class-transformer"), exports);
 //# sourceMappingURL=index.js.map

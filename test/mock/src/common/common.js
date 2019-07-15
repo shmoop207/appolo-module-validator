@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const tslib_1 = require("tslib");
 const class_validator_1 = require("class-validator");
+const isObject_1 = require("../../../../module/src/validators/isObject");
 class DataDto {
 }
 tslib_1.__decorate([
@@ -15,6 +16,11 @@ tslib_1.__decorate([
     class_validator_1.IsNumber(),
     tslib_1.__metadata("design:type", Number)
 ], DataDto3.prototype, "name", void 0);
+tslib_1.__decorate([
+    isObject_1.IsObject(),
+    class_validator_1.IsOptional(),
+    tslib_1.__metadata("design:type", Object)
+], DataDto3.prototype, "obj", void 0);
 exports.DataDto3 = DataDto3;
 class DataDtoInherit extends DataDto3 {
 }

@@ -8,6 +8,7 @@ const defaults_1 = require("./src/defaults");
 const validatePipeline_1 = require("./src/pipelines/validatePipeline");
 const transformPipeline_1 = require("./src/pipelines/transformPipeline");
 const transformAfterPipeline_1 = require("./src/pipelines/transformAfterPipeline");
+const validator_1 = require("./src/factories/validator");
 let ValidationModule = class ValidationModule extends index_1.Module {
     constructor(opts) {
         super(opts);
@@ -22,7 +23,7 @@ let ValidationModule = class ValidationModule extends index_1.Module {
         });
     }
     get exports() {
-        return [validatePipeline_1.ValidatePipeLine, transformPipeline_1.TransformPipeline, transformAfterPipeline_1.TransformAfterPipeline];
+        return [validatePipeline_1.ValidatePipeLine, transformPipeline_1.TransformPipeline, transformAfterPipeline_1.TransformAfterPipeline, validator_1.Validator];
     }
 };
 ValidationModule = tslib_1.__decorate([

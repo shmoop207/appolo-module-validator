@@ -7,6 +7,7 @@ import {Defaults} from "./src/defaults";
 import {ValidatePipeLine} from "./src/pipelines/validatePipeline";
 import {TransformPipeline} from "./src/pipelines/transformPipeline";
 import {TransformAfterPipeline} from "./src/pipelines/transformAfterPipeline";
+import {Validator} from "./src/factories/validator";
 
 @module()
 export class ValidationModule extends Module<IOptions> {
@@ -29,7 +30,7 @@ export class ValidationModule extends Module<IOptions> {
     }
 
     get exports() {
-        return [ValidatePipeLine, TransformPipeline, TransformAfterPipeline]
+        return [ValidatePipeLine, TransformPipeline, TransformAfterPipeline,Validator]
 
     }
 

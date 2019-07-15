@@ -4,6 +4,7 @@ import {IOptions} from "./IOptions";
 
 export const Defaults: Partial<IOptions> = {
     validatorOptions: {
+        whitelist:true,
         validationError: {target: false, value: false}
     }, transformOptions: {
         enableImplicitConversion: true
