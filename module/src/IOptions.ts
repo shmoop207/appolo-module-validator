@@ -12,4 +12,5 @@ export interface ValidateOptions {
     validatorOptions?: ValidatorOptions
     transformOptions?: ClassTransformOptions,
     validationErrorFormat?: (results: ValidationError[]) => string
+    valueField?: string
 }

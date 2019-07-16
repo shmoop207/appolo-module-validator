@@ -13,7 +13,8 @@ let ValidatePipeLine = class ValidatePipeLine {
         _.forEach(context.values, item => {
             let type = context.metaData.validatorType || item.type;
             if (util_1.Util.isValidType(type)) {
-                promises.push(this._validateArg(type, item.value, opts, item.index, context));
+                let value = opts.valueField ? item.value[opts.valueField] : item.value;
+                promises.push(this._validateArg(type, value, opts, item.index, context));
             }
         });
         await Promise.all(promises);
@@ -26,7 +27,12 @@ let ValidatePipeLine = class ValidatePipeLine {
             let msg = options.validationErrorFormat(errors);
             throw new appolo_1.BadRequestError(msg, errors);
         }
-        context.setArgumentAt(index, entity);
+        if (options.valueField) {
+            value[options.valueField] = entity;
+        }
+        else {
+            context.setArgumentAt(index, entity);
+        }
     }
 };
 tslib_1.__decorate([

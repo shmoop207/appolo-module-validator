@@ -21,7 +21,10 @@ export class ValidatePipeLine implements IPipeline {
             let type = context.metaData.validatorType || item.type;
 
             if (Util.isValidType(type)) {
-                promises.push(this._validateArg(type, item.value, opts, item.index, context));
+
+                let value = opts.valueField ? item.value[opts.valueField] : item.value;
+
+                promises.push(this._validateArg(type, value, opts, item.index, context));
             }
         });
 
@@ -46,8 +49,12 @@ export class ValidatePipeLine implements IPipeline {
 
             throw new BadRequestError(msg, errors)
         }
+        if (options.valueField) {
+            value[options.valueField] = entity
+        } else {
+            context.setArgumentAt(index, entity);
 
-        context.setArgumentAt(index, entity);
+        }
     }
 
 }
