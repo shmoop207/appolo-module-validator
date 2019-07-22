@@ -13,7 +13,7 @@ export class ValidatePipeLine implements IPipeline {
 
     public async run(context: PipelineContext, next) {
 
-        let opts = _.defaults({}, context.metaData.options || {}, this.moduleOptions);
+        let opts: ValidateOptions = context.metaData.options;
 
         let promises = [];
 
@@ -39,13 +39,13 @@ export class ValidatePipeLine implements IPipeline {
         const entity = plainToClass(
             type,
             value,
-            options.transformOptions,
+            Object.assign({}, this.moduleOptions.transformOptions, options.transformOptions),
         );
 
-        let errors = await validate(entity, options.validatorOptions);
+        let errors = await validate(entity, Object.assign({}, this.moduleOptions.validatorOptions, options.validatorOptions));
 
         if (errors.length) {
-            let msg = options.validationErrorFormat(errors);
+            let msg = (options.validationErrorFormat || this.moduleOptions.validationErrorFormat)(errors);
 
             throw new BadRequestError(msg, errors)
         }

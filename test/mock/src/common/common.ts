@@ -12,12 +12,21 @@ export class DataDto3 {
 
     @IsObject()
     @IsOptional()
-    obj:any
+    obj: any
 }
 
 
-export class DataDtoInherit extends DataDto3{
+export class DataDtoInherit extends DataDto3 {
     @IsNumber()
     name2: number;
 
+}
+
+
+export class DtoGroups {
+    @IsNumber()
+    name: number;
+
+    @IsString({groups: ["test"]})
+    name2: string
 }

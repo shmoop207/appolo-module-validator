@@ -29,4 +29,15 @@ tslib_1.__decorate([
     tslib_1.__metadata("design:type", Number)
 ], DataDtoInherit.prototype, "name2", void 0);
 exports.DataDtoInherit = DataDtoInherit;
+class DtoGroups {
+}
+tslib_1.__decorate([
+    class_validator_1.IsNumber(),
+    tslib_1.__metadata("design:type", Number)
+], DtoGroups.prototype, "name", void 0);
+tslib_1.__decorate([
+    class_validator_1.IsString({ groups: ["test"] }),
+    tslib_1.__metadata("design:type", String)
+], DtoGroups.prototype, "name2", void 0);
+exports.DtoGroups = DtoGroups;
 //# sourceMappingURL=common.js.map

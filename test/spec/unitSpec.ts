@@ -234,7 +234,18 @@ describe('validations e2e', () => {
         result.name.should.be.eq(1);
         result.obj.a.should.be.eq(1);
 
-    })
+    });
+
+    it('should call validate with groups', async () => {
+        let manager = app.injector.get<SomeManager>(SomeManager);
+
+        let result = await manager.getData6({name2: "22", name: "1"});
+
+        result.name.should.be.eq(1);
+        should.not.exist(result.name2);
+
+
+    });
 
 
 });

@@ -8,7 +8,7 @@ const _ = require("lodash");
 const util_1 = require("../util/util");
 let ValidatePipeLine = class ValidatePipeLine {
     async run(context, next) {
-        let opts = _.defaults({}, context.metaData.options || {}, this.moduleOptions);
+        let opts = context.metaData.options;
         let promises = [];
         _.forEach(context.values, item => {
             let type = context.metaData.validatorType || item.type;
@@ -21,10 +21,10 @@ let ValidatePipeLine = class ValidatePipeLine {
         return next();
     }
     async _validateArg(type, value, options, index, context) {
-        const entity = class_transformer_1.plainToClass(type, value, options.transformOptions);
-        let errors = await class_validator_1.validate(entity, options.validatorOptions);
+        const entity = class_transformer_1.plainToClass(type, value, Object.assign({}, this.moduleOptions.transformOptions, options.transformOptions));
+        let errors = await class_validator_1.validate(entity, Object.assign({}, this.moduleOptions.validatorOptions, options.validatorOptions));
         if (errors.length) {
-            let msg = options.validationErrorFormat(errors);
+            let msg = (options.validationErrorFormat || this.moduleOptions.validationErrorFormat)(errors);
             throw new appolo_1.BadRequestError(msg, errors);
         }
         if (options.valueField) {

@@ -20,7 +20,7 @@ export class ValidationModule extends Module<IOptions> {
     }
 
     protected beforeInitialize() {
-        let metaDataValidator = getFromContainer<MetadataStorage>(MetadataStorage)
+        let metaDataValidator = getFromContainer<MetadataStorage>(MetadataStorage);
 
         _.forEach((metaDataValidator as any).validationMetadatas, item => {
             if (item && item.groups && item.groups.length == 0) {

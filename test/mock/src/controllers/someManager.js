@@ -20,6 +20,9 @@ let SomeManager = class SomeManager {
     async getData5(data) {
         return { name: "11" };
     }
+    async getData6(data) {
+        return data;
+    }
 };
 tslib_1.__decorate([
     index_1.validate(),
@@ -51,6 +54,12 @@ tslib_1.__decorate([
     tslib_1.__metadata("design:paramtypes", [Object]),
     tslib_1.__metadata("design:returntype", Promise)
 ], SomeManager.prototype, "getData5", null);
+tslib_1.__decorate([
+    tslib_1.__param(0, index_1.validate(common_1.DtoGroups, { validatorOptions: { groups: ["test2"] } })),
+    tslib_1.__metadata("design:type", Function),
+    tslib_1.__metadata("design:paramtypes", [Object]),
+    tslib_1.__metadata("design:returntype", Promise)
+], SomeManager.prototype, "getData6", null);
 SomeManager = tslib_1.__decorate([
     appolo_1.define(),
     appolo_1.singleton()
