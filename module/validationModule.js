@@ -17,7 +17,7 @@ let ValidationModule = class ValidationModule extends index_1.Module {
     beforeInitialize() {
         let metaDataValidator = class_validator_1.getFromContainer(class_validator_1.MetadataStorage);
         _.forEach(metaDataValidator.validationMetadatas, item => {
-            if (item && item.groups && item.groups.length == 0) {
+            if (item && (!item.groups || item.groups.length == 0)) {
                 item.always = true;
             }
         });
