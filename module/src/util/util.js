@@ -14,6 +14,6 @@ class Util {
         return result;
     }
 }
-Util._classCache = new Map();
 exports.Util = Util;
+Util._classCache = new Map();
 //# sourceMappingURL=util.js.map

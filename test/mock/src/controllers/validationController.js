@@ -11,6 +11,7 @@ tslib_1.__decorate([
     class_validator_1.Length(10),
     tslib_1.__metadata("design:type", String)
 ], ValidationsDto.prototype, "test", void 0);
+exports.ValidationsDto = ValidationsDto;
 class AuthDto {
 }
 tslib_1.__decorate([
@@ -47,6 +48,9 @@ let ValidationController = class ValidationController extends appolo_1.Controlle
     test(req, res, model) {
         res.json({ working: true, controllerName: this.route.controller, model: model });
     }
+    test2(req, res, model) {
+        res.json({ working: true, controllerName: this.route.controller, model: model });
+    }
     validation(req, res, model) {
         res.json(model);
     }
@@ -62,6 +66,13 @@ tslib_1.__decorate([
     tslib_1.__metadata("design:paramtypes", [Object, Object, ValidationsDto]),
     tslib_1.__metadata("design:returntype", void 0)
 ], ValidationController.prototype, "test", null);
+tslib_1.__decorate([
+    index_1.validate(),
+    tslib_1.__param(2, appolo_1.query()),
+    tslib_1.__metadata("design:type", Function),
+    tslib_1.__metadata("design:paramtypes", [Object, Object, ValidationsDto]),
+    tslib_1.__metadata("design:returntype", void 0)
+], ValidationController.prototype, "test2", null);
 tslib_1.__decorate([
     appolo_1.get("/test/validations/auth"),
     index_1.validate(),

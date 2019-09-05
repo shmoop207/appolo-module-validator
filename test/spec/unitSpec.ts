@@ -41,6 +41,22 @@ describe('validations e2e', () => {
         res.body.message.should.contain("Bad Request")
     });
 
+
+    it('should should call nested with validation error', async () => {
+
+        let res = await request(app.handle)
+            .get('/test/nested/?user2_name=11');
+
+        res.should.to.have.status(400);
+
+        res.should.to.be.json;
+
+        should.exist(res.body);
+
+        res.body.error.should.contain("An instance of an object has failed the validation");
+        res.body.message.should.contain("Bad Request")
+    });
+
     it('should call validations error', async () => {
 
         let res = await request(app.handle)

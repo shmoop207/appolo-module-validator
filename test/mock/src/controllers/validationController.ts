@@ -3,7 +3,7 @@ import {Controller, controller, IRequest, IResponse, get,query} from 'appolo';
 import {validate} from "../../../../index";
 import {IsString, Length,MinLength,IsNumber,ValidateNested} from "class-validator";
 
-class ValidationsDto {
+export class ValidationsDto {
     @IsString()
     @Length(10)
     test: string
@@ -46,6 +46,11 @@ export class ValidationController extends Controller {
     @get("/test/validations/")
     @validate()
     test(req: IRequest, res: IResponse, @query() model: ValidationsDto) {
+        res.json({working: true, controllerName: this.route.controller, model: model})
+    }
+
+    @validate()
+    test2(req: IRequest, res: IResponse, @query() model: ValidationsDto) {
         res.json({working: true, controllerName: this.route.controller, model: model})
     }
 

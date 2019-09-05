@@ -19,7 +19,7 @@ export class ValidationModule extends Module<IOptions> {
         super(opts);
     }
 
-    protected beforeInitialize() {
+    public beforeInitialize() {
         let metaDataValidator = getFromContainer<MetadataStorage>(MetadataStorage);
 
         _.forEach((metaDataValidator as any).validationMetadatas, item => {
