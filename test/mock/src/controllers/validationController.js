@@ -75,6 +75,7 @@ tslib_1.__decorate([
     class_validator_1.IsOptional(),
     class_validator_1.IsArray(),
     index_1.IsObject({ each: true }),
+    index_1.Type(() => Object),
     tslib_1.__metadata("design:type", Array)
 ], GetAllModel.prototype, "populate", void 0);
 tslib_1.__decorate([
@@ -133,7 +134,7 @@ tslib_1.__decorate([
 ], ValidationController.prototype, "validationObject", null);
 tslib_1.__decorate([
     appolo_1.get('/test/validations/get_all'),
-    tslib_1.__param(0, index_1.validate()), tslib_1.__param(0, appolo_1.model()),
+    tslib_1.__param(0, index_1.validate()), tslib_1.__param(0, index_1.validate()), tslib_1.__param(0, appolo_1.model()),
     tslib_1.__metadata("design:type", Function),
     tslib_1.__metadata("design:paramtypes", [GetAllModel, Object]),
     tslib_1.__metadata("design:returntype", Promise)

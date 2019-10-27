@@ -65,6 +65,7 @@ export class GetAllModel<T> {
     @IsOptional()
     @IsArray()
     @IsObject({each:true})
+    @Type(()=>Object)
     public populate?: any[];
 
     @IsOptional()
@@ -104,7 +105,7 @@ export class ValidationController extends Controller {
     }
 
     @get('/test/validations/get_all')
-    public async getAll(@validate() @model() model: GetAllModel<any>,...rest:any[]) {
+    public async getAll(@validate() @validate() @model() model: GetAllModel<any>,...rest:any[]) {
 
         return model;
     }
