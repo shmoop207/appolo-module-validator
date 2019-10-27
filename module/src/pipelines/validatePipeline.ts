@@ -1,9 +1,12 @@
-import {define, BadRequestError, IPipeline, singleton, inject, initMethod, PipelineContext} from 'appolo';
+import {define, BadRequestError, IPipeline, singleton, inject, initMethod, PipelineContext, Reflector} from 'appolo';
 import {IOptions, ValidateOptions} from "../IOptions";
 import {plainToClass} from "class-transformer";
 import {validate} from "class-validator";
 import * as _ from "lodash";
 import {Util} from "../util/util";
+import {Classes} from "appolo-utils";
+
+//const  plainToClass = Symbol("__plainToClass__")
 
 @define()
 @singleton()
@@ -35,12 +38,17 @@ export class ValidatePipeLine implements IPipeline {
 
     private async _validateArg(type: any, value: any, options: ValidateOptions, index: number, context: PipelineContext): Promise<any> {
 
+        let entity: any;
 
-        const entity = plainToClass(
-            type,
-            value,
-            Object.assign({}, this.moduleOptions.transformOptions, options.transformOptions),
-        );
+        if (value.constructor && Classes.isClass(value.constructor) && Reflect.getMetadata("__plainToClass__", value)) {
+            entity = value;
+        } else {
+            entity = plainToClass(
+                type,
+                value,
+                Object.assign({}, this.moduleOptions.transformOptions, options.transformOptions),
+            );
+        }
 
         let errors = await validate(entity, Object.assign({}, this.moduleOptions.validatorOptions, options.validatorOptions));
 
@@ -49,6 +57,9 @@ export class ValidatePipeLine implements IPipeline {
 
             throw new BadRequestError(msg, errors)
         }
+
+        Reflect.defineMetadata("__plainToClass__", true, entity);
+
         if (options.valueField) {
             value[options.valueField] = entity
         } else {

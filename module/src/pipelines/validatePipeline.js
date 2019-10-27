@@ -6,6 +6,8 @@ const class_transformer_1 = require("class-transformer");
 const class_validator_1 = require("class-validator");
 const _ = require("lodash");
 const util_1 = require("../util/util");
+const appolo_utils_1 = require("appolo-utils");
+//const  plainToClass = Symbol("__plainToClass__")
 let ValidatePipeLine = class ValidatePipeLine {
     async run(context, next) {
         let opts = context.metaData.options;
@@ -21,12 +23,19 @@ let ValidatePipeLine = class ValidatePipeLine {
         return next();
     }
     async _validateArg(type, value, options, index, context) {
-        const entity = class_transformer_1.plainToClass(type, value, Object.assign({}, this.moduleOptions.transformOptions, options.transformOptions));
+        let entity;
+        if (value.constructor && appolo_utils_1.Classes.isClass(value.constructor) && Reflect.getMetadata("__plainToClass__", value)) {
+            entity = value;
+        }
+        else {
+            entity = class_transformer_1.plainToClass(type, value, Object.assign({}, this.moduleOptions.transformOptions, options.transformOptions));
+        }
         let errors = await class_validator_1.validate(entity, Object.assign({}, this.moduleOptions.validatorOptions, options.validatorOptions));
         if (errors.length) {
             let msg = (options.validationErrorFormat || this.moduleOptions.validationErrorFormat)(errors);
             throw new appolo_1.BadRequestError(msg, errors);
         }
+        Reflect.defineMetadata("__plainToClass__", true, entity);
         if (options.valueField) {
             value[options.valueField] = entity;
         }

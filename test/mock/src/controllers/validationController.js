@@ -75,7 +75,6 @@ tslib_1.__decorate([
     class_validator_1.IsOptional(),
     class_validator_1.IsArray(),
     index_1.IsObject({ each: true }),
-    index_1.Type(() => Object),
     tslib_1.__metadata("design:type", Array)
 ], GetAllModel.prototype, "populate", void 0);
 tslib_1.__decorate([

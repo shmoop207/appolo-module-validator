@@ -65,7 +65,6 @@ export class GetAllModel<T> {
     @IsOptional()
     @IsArray()
     @IsObject({each:true})
-    @Type(()=>Object)
     public populate?: any[];
 
     @IsOptional()

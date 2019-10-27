@@ -126,10 +126,10 @@ describe('validations e2e', () => {
         should.exist(res.body);
 
         res.body.model.a.test.should.be.eq("aaa");
-        res.body.name.should.be.eq("ValidationController");
+        res.body.name.should.be.eq("NestedvalidationController");
     });
 
-    it.only('should call validations get all object', async () => {
+    it('should call validations get all object', async () => {
 
         let res = await request(app.handle)
             .get('/test/validations/get_all?filter=%7B%7D&fields=%7B%7D&sort=%7B%7D&populate[]=%7B%22path%22:%22game%22,%22select%22:%22name%22%7D');
