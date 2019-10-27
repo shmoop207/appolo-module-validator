@@ -1,7 +1,7 @@
 "use strict";
-import {Controller, controller, IRequest, IResponse, get,query} from 'appolo';
-import {validate} from "../../../../index";
-import {IsString, Length,MinLength,IsNumber,ValidateNested} from "class-validator";
+import {Controller, controller, IRequest, IResponse, get,query,model} from 'appolo';
+import {IsObject, validate,Type} from "../../../../index";
+import {IsString, Length,MinLength,IsNumber,ValidateNested,IsOptional,Allow,IsBoolean,IsArray} from "class-validator";
 
 export class ValidationsDto {
     @IsString()
@@ -38,6 +38,40 @@ class ObjectDto {
     a:NestedObject
 }
 
+export type CrudItemParams<T> = { [J in keyof Partial<T>]: any };
+
+export class GetAllModel<T> {
+
+    @IsNumber()
+    @IsOptional()
+    public page: number;
+
+    @IsNumber()
+    @IsOptional()
+    public pageSize: number;
+
+    @IsObject()
+    @IsOptional()
+    public sort?: CrudItemParams<T>;
+
+    @IsObject()
+    @IsOptional()
+    public filter?: CrudItemParams<T>;
+
+    @IsObject()
+    @IsOptional()
+    public fields?: CrudItemParams<T>;
+
+    @IsOptional()
+    @IsArray()
+    @IsObject({each:true})
+    public populate?: any[];
+
+    @IsOptional()
+    @IsBoolean()
+    lean:boolean
+}
+
 
 
 @controller()
@@ -67,6 +101,12 @@ export class ValidationController extends Controller {
 
 
         res.json({model: model, name: this.constructor.name})
+    }
+
+    @get('/test/validations/get_all')
+    public async getAll(@validate() @model() model: GetAllModel<any>,...rest:any[]) {
+
+        return model;
     }
 
 }

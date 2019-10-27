@@ -44,6 +44,45 @@ tslib_1.__decorate([
     class_validator_1.ValidateNested(),
     tslib_1.__metadata("design:type", NestedObject)
 ], ObjectDto.prototype, "a", void 0);
+class GetAllModel {
+}
+tslib_1.__decorate([
+    class_validator_1.IsNumber(),
+    class_validator_1.IsOptional(),
+    tslib_1.__metadata("design:type", Number)
+], GetAllModel.prototype, "page", void 0);
+tslib_1.__decorate([
+    class_validator_1.IsNumber(),
+    class_validator_1.IsOptional(),
+    tslib_1.__metadata("design:type", Number)
+], GetAllModel.prototype, "pageSize", void 0);
+tslib_1.__decorate([
+    index_1.IsObject(),
+    class_validator_1.IsOptional(),
+    tslib_1.__metadata("design:type", Object)
+], GetAllModel.prototype, "sort", void 0);
+tslib_1.__decorate([
+    index_1.IsObject(),
+    class_validator_1.IsOptional(),
+    tslib_1.__metadata("design:type", Object)
+], GetAllModel.prototype, "filter", void 0);
+tslib_1.__decorate([
+    index_1.IsObject(),
+    class_validator_1.IsOptional(),
+    tslib_1.__metadata("design:type", Object)
+], GetAllModel.prototype, "fields", void 0);
+tslib_1.__decorate([
+    class_validator_1.IsOptional(),
+    class_validator_1.IsArray(),
+    index_1.IsObject({ each: true }),
+    tslib_1.__metadata("design:type", Array)
+], GetAllModel.prototype, "populate", void 0);
+tslib_1.__decorate([
+    class_validator_1.IsOptional(),
+    class_validator_1.IsBoolean(),
+    tslib_1.__metadata("design:type", Boolean)
+], GetAllModel.prototype, "lean", void 0);
+exports.GetAllModel = GetAllModel;
 let ValidationController = class ValidationController extends appolo_1.Controller {
     test(req, res, model) {
         res.json({ working: true, controllerName: this.route.controller, model: model });
@@ -56,6 +95,9 @@ let ValidationController = class ValidationController extends appolo_1.Controlle
     }
     validationObject(req, res, model) {
         res.json({ model: model, name: this.constructor.name });
+    }
+    async getAll(model, ...rest) {
+        return model;
     }
 };
 tslib_1.__decorate([
@@ -89,6 +131,13 @@ tslib_1.__decorate([
     tslib_1.__metadata("design:paramtypes", [Object, Object, ObjectDto]),
     tslib_1.__metadata("design:returntype", void 0)
 ], ValidationController.prototype, "validationObject", null);
+tslib_1.__decorate([
+    appolo_1.get('/test/validations/get_all'),
+    tslib_1.__param(0, index_1.validate()), tslib_1.__param(0, appolo_1.model()),
+    tslib_1.__metadata("design:type", Function),
+    tslib_1.__metadata("design:paramtypes", [GetAllModel, Object]),
+    tslib_1.__metadata("design:returntype", Promise)
+], ValidationController.prototype, "getAll", null);
 ValidationController = tslib_1.__decorate([
     appolo_1.controller()
 ], ValidationController);

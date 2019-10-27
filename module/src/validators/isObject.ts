@@ -14,6 +14,9 @@ export class IsObjectConstraint implements ValidatorConstraintInterface {
     validate(value: any, args: ValidationArguments) {
 
         try{
+
+            let originValue = value;
+
             if (_.isString(value)) {
                 value = JSON.parse(value)
             }
@@ -22,7 +25,14 @@ export class IsObjectConstraint implements ValidatorConstraintInterface {
                 return false;
             }
 
-            args.object[args.property] = value;
+            if(Array.isArray(args.value)){
+                let index = args.value.indexOf(originValue);
+                args.value[index] = value;
+            } else {
+                args.object[args.property] = value;
+            }
+
+
 
             return true;
 

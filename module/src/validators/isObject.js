@@ -6,13 +6,20 @@ const _ = require("lodash");
 let IsObjectConstraint = class IsObjectConstraint {
     validate(value, args) {
         try {
+            let originValue = value;
             if (_.isString(value)) {
                 value = JSON.parse(value);
             }
             if (!_.isPlainObject(value)) {
                 return false;
             }
-            args.object[args.property] = value;
+            if (Array.isArray(args.value)) {
+                let index = args.value.indexOf(originValue);
+                args.value[index] = value;
+            }
+            else {
+                args.object[args.property] = value;
+            }
             return true;
         }
         catch (e) {
