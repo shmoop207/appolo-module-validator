@@ -5,3 +5,4 @@ npm-debug.log
 test/output
 yarn.lock
 .DS_Store
+dist

@@ -3,83 +3,71 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const tslib_1 = require("tslib");
 const appolo_1 = require("appolo");
 const index_1 = require("../../../../index");
-const class_validator_1 = require("class-validator");
 class ValidationsDto {
 }
 tslib_1.__decorate([
-    class_validator_1.IsString(),
-    class_validator_1.Length(10),
+    index_1.string().min(10),
     tslib_1.__metadata("design:type", String)
 ], ValidationsDto.prototype, "test", void 0);
 exports.ValidationsDto = ValidationsDto;
 class AuthDto {
 }
 tslib_1.__decorate([
-    class_validator_1.IsString(),
-    class_validator_1.MinLength(3),
+    index_1.string().min(3),
     tslib_1.__metadata("design:type", String)
 ], AuthDto.prototype, "userName", void 0);
 tslib_1.__decorate([
-    class_validator_1.IsString(),
-    class_validator_1.MinLength(3),
+    index_1.string().min(3),
     tslib_1.__metadata("design:type", String)
 ], AuthDto.prototype, "password", void 0);
 class NestedObject {
 }
 tslib_1.__decorate([
-    class_validator_1.IsString(),
+    index_1.string(),
     tslib_1.__metadata("design:type", String)
 ], NestedObject.prototype, "test", void 0);
 tslib_1.__decorate([
-    class_validator_1.IsNumber(),
+    index_1.string(),
     tslib_1.__metadata("design:type", Number)
 ], NestedObject.prototype, "test2", void 0);
 class ObjectDto {
 }
 tslib_1.__decorate([
-    class_validator_1.IsNumber(),
+    index_1.number(),
     tslib_1.__metadata("design:type", Number)
 ], ObjectDto.prototype, "b", void 0);
 tslib_1.__decorate([
-    class_validator_1.ValidateNested(),
+    index_1.object(NestedObject),
     tslib_1.__metadata("design:type", NestedObject)
 ], ObjectDto.prototype, "a", void 0);
 class GetAllModel {
 }
 tslib_1.__decorate([
-    class_validator_1.IsNumber(),
-    class_validator_1.IsOptional(),
+    index_1.number().optional(),
     tslib_1.__metadata("design:type", Number)
 ], GetAllModel.prototype, "page", void 0);
 tslib_1.__decorate([
-    class_validator_1.IsNumber(),
-    class_validator_1.IsOptional(),
+    index_1.number().optional(),
     tslib_1.__metadata("design:type", Number)
 ], GetAllModel.prototype, "pageSize", void 0);
 tslib_1.__decorate([
-    index_1.IsObject(),
-    class_validator_1.IsOptional(),
+    index_1.object().optional(),
     tslib_1.__metadata("design:type", Object)
 ], GetAllModel.prototype, "sort", void 0);
 tslib_1.__decorate([
-    index_1.IsObject(),
-    class_validator_1.IsOptional(),
+    index_1.object().optional(),
     tslib_1.__metadata("design:type", Object)
 ], GetAllModel.prototype, "filter", void 0);
 tslib_1.__decorate([
-    index_1.IsObject(),
-    class_validator_1.IsOptional(),
+    index_1.object().optional(),
     tslib_1.__metadata("design:type", Object)
 ], GetAllModel.prototype, "fields", void 0);
 tslib_1.__decorate([
-    class_validator_1.IsOptional(),
-    class_validator_1.IsArray(),
-    index_1.IsObject({ each: true }),
+    index_1.array(index_1.object()).optional(),
     tslib_1.__metadata("design:type", Array)
 ], GetAllModel.prototype, "populate", void 0);
 tslib_1.__decorate([
-    class_validator_1.IsOptional(),
-    class_validator_1.IsBoolean(),
+    index_1.boolean().optional(),
     tslib_1.__metadata("design:type", Boolean)
 ], GetAllModel.prototype, "lean", void 0);
 exports.GetAllModel = GetAllModel;

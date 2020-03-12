@@ -14,12 +14,6 @@ let SomeManager = class SomeManager {
     async getData3(data) {
         return data;
     }
-    async getData4(data) {
-        return data instanceof common_1.DataDto3;
-    }
-    async getData5(data) {
-        return { name: "11" };
-    }
     async getData6(data) {
         return data;
     }
@@ -43,19 +37,7 @@ tslib_1.__decorate([
     tslib_1.__metadata("design:returntype", Promise)
 ], SomeManager.prototype, "getData3", null);
 tslib_1.__decorate([
-    tslib_1.__param(0, index_1.transform(common_1.DataDto3)),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object]),
-    tslib_1.__metadata("design:returntype", Promise)
-], SomeManager.prototype, "getData4", null);
-tslib_1.__decorate([
-    index_1.transformAfter(common_1.DataDto3),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object]),
-    tslib_1.__metadata("design:returntype", Promise)
-], SomeManager.prototype, "getData5", null);
-tslib_1.__decorate([
-    tslib_1.__param(0, index_1.validate(common_1.DtoGroups, { validatorOptions: { groups: ["test2"] } })),
+    tslib_1.__param(0, index_1.validate(common_1.DtoGroups, { groups: ["test2"] })),
     tslib_1.__metadata("design:type", Function),
     tslib_1.__metadata("design:paramtypes", [Object]),
     tslib_1.__metadata("design:returntype", Promise)

@@ -1,10 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const appolo_1 = require("appolo");
-const _ = require("lodash");
+const appolo_utils_1 = require("appolo-utils");
 const validatePipeline_1 = require("../pipelines/validatePipeline");
 function validate(validatorType, options = {}) {
-    if (arguments.length == 1 && _.isPlainObject(validatorType)) {
+    if (arguments.length == 1 && appolo_utils_1.Objects.isPlain(validatorType)) {
         options = validatorType;
         validatorType = null;
     }

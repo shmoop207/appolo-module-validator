@@ -1,18 +1,14 @@
 import {define, BadRequestError, IPipeline, singleton, inject, initMethod, PipelineContext, Reflector} from 'appolo';
 import {IOptions, ValidateOptions} from "../IOptions";
-import {plainToClass} from "class-transformer";
-import {validate} from "class-validator";
-import * as _ from "lodash";
-import {Util} from "../util/util";
-import {Classes} from "appolo-utils";
+import {Validator, AnySchema, ValidationErrorsError} from "appolo-validator";
 
-//const  plainToClass = Symbol("__plainToClass__")
 
 @define()
 @singleton()
 export class ValidatePipeLine implements IPipeline {
 
     @inject() moduleOptions: IOptions;
+    @inject() validator: Validator;
 
     public async run(context: PipelineContext, next) {
 
@@ -20,52 +16,35 @@ export class ValidatePipeLine implements IPipeline {
 
         let promises = [];
 
-        _.forEach(context.values, item => {
+        for (let i = 0; i < (context.values || []).length; i++) {
+            let item = context.values[i];
             let type = context.metaData.validatorType || item.type;
 
-            if (Util.isValidType(type)) {
+            if (typeof type === "function" || typeof type === "object") {
+                let schema = this.validator.getSchema(type);
 
-                let value = opts.valueField ? item.value[opts.valueField] : item.value;
+                if (schema) {
 
-                promises.push(this._validateArg(type, value, opts, item.index, context));
+                    promises.push(this._validateArg(schema, type, item.value, opts, item.index, context));
+                }
             }
-        });
+        }
 
         await Promise.all(promises);
 
         return next();
     }
 
-    private async _validateArg(type: any, value: any, options: ValidateOptions, index: number, context: PipelineContext): Promise<any> {
+    private async _validateArg(schema: AnySchema, type: any, value: any, options: ValidateOptions, index: number, context: PipelineContext): Promise<any> {
 
-        let entity: any;
+        let result = await this.validator.validate(schema, value, options);
 
-        if (value.constructor && Classes.isClass(value.constructor) && Reflect.getMetadata("__plainToClass__", value)) {
-            entity = value;
-        } else {
-            entity = plainToClass(
-                type,
-                value,
-                Object.assign({}, this.moduleOptions.transformOptions, options.transformOptions),
-            );
+        if (result.errors.length) {
+
+            throw new BadRequestError("failed to validate", {errors: result.errors.map(msg => msg.toString())})
         }
 
-        let errors = await validate(entity, Object.assign({}, this.moduleOptions.validatorOptions, options.validatorOptions));
-
-        if (errors.length) {
-            let msg = (options.validationErrorFormat || this.moduleOptions.validationErrorFormat)(errors);
-
-            throw new BadRequestError(msg, errors)
-        }
-
-        Reflect.defineMetadata("__plainToClass__", true, entity);
-
-        if (options.valueField) {
-            value[options.valueField] = entity
-        } else {
-            context.setArgumentAt(index, entity);
-
-        }
+        context.setArgumentAt(index, result.value);
     }
 
 }

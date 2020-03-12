@@ -1,42 +1,49 @@
 import {define, factory, IFactory, singleton, inject, initMethod, Injector, Util} from 'appolo';
-import {
-    Validator as ClassValidator,
-    useContainer,
-   MetadataStorage
-} from "class-validator";
+import {validation, Validator as AValidator} from 'appolo-validator';
+import {IOptions} from "../IOptions";
+// import {
+//     Validator as ClassValidator,
+//     useContainer,
+//    MetadataStorage
+// } from "class-validator";
 
 @define()
 @singleton()
 @factory()
-export class Validator implements IFactory<ClassValidator> {
+export class Validator implements IFactory<AValidator> {
 
     @inject() injector: Injector;
+    @inject() moduleOptions: IOptions;
 
-    public get() {
+    public async get() {
 
-        let $injector = this.injector;
+        //let $injector = this.injector;
 
-        useContainer({
-            get(someClass: any): any {
+        let validator = await validation(this.moduleOptions);
 
-                if(someClass === ClassValidator || someClass === MetadataStorage){
-                    return null
-                }
+        return validator;
 
-                let id = Util.getClassNameOrId(someClass);
-
-                if ($injector.hasDefinition(id)) {
-                    return $injector.get(someClass)
-                }
-
-                return null
-
-
-            }
-        }, {fallback: true, fallbackOnErrors: true});
-
-
-        return new ClassValidator()
+        // useContainer({
+        //     get(someClass: any): any {
+        //
+        //         if(someClass === ClassValidator || someClass === MetadataStorage){
+        //             return null
+        //         }
+        //
+        //         let id = Util.getClassNameOrId(someClass);
+        //
+        //         if ($injector.hasDefinition(id)) {
+        //             return $injector.get(someClass)
+        //         }
+        //
+        //         return null
+        //
+        //
+        //     }
+        // }, {fallback: true, fallbackOnErrors: true});
+        //
+        //
+        // return new ClassValidator()
 
     }
 }

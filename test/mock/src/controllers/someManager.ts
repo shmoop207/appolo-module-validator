@@ -1,5 +1,5 @@
 import {define, singleton} from "appolo";
-import {validate, transform, transformAfter} from "../../../../index";
+import {validate} from "../../../../index";
 import {DataDto, DataDto3, DtoGroups} from "../common/common";
 
 
@@ -21,17 +21,8 @@ export class SomeManager {
         return data
     }
 
-    public async getData4(@transform(DataDto3) data: any): Promise<boolean> {
-        return data instanceof DataDto3
-    }
 
-    @transformAfter(DataDto3)
-    public async getData5(data: any): Promise<any> {
-        return {name: "11"}
-    }
-
-
-    public async getData6(@validate(DtoGroups,{validatorOptions:{groups:["test2"]}}) data: any): Promise<DtoGroups> {
+    public async getData6(@validate(DtoGroups, {groups: ["test2"]}) data: any): Promise<DtoGroups> {
         return data
     }
 

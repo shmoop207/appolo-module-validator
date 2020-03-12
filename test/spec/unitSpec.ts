@@ -1,5 +1,4 @@
 import * as chai from 'chai';
-import * as _ from 'lodash';
 import * as request from 'supertest';
 import {App, createApp} from 'appolo';
 import sinon = require("sinon");
@@ -21,8 +20,12 @@ describe('validations e2e', () => {
             environment: "testing",
             root: process.cwd() + '/test/mock/',
         });
+        try {
+            await app.launch();
+        } catch (e) {
+            console.log(e)
+        }
 
-        await app.launch();
     });
 
 
@@ -37,8 +40,9 @@ describe('validations e2e', () => {
 
         should.exist(res.body);
 
-        res.body.error.should.contain("An instance of an object has failed the validation");
+        res.body.error.should.contain("failed to validate");
         res.body.message.should.contain("Bad Request")
+        res.body.errors.length.should.eq(2)
     });
 
 
@@ -53,7 +57,8 @@ describe('validations e2e', () => {
 
         should.exist(res.body);
 
-        res.body.error.should.contain("An instance of an object has failed the validation");
+        res.body.error.should.contain("failed to validate");
+        res.body.errors.length.should.be.eq(2);
         res.body.message.should.contain("Bad Request")
     });
 
@@ -188,7 +193,7 @@ describe('validations e2e', () => {
         try {
             data = await manager.getData(data);
         } catch (e) {
-            e.data[0].property.should.be.eq("name");
+            e.data.errors[0].should.be.eq("name is not valid string");
 
         }
 
@@ -201,8 +206,7 @@ describe('validations e2e', () => {
         try {
             data = await manager.getData2(data);
         } catch (e) {
-            e.data[0].property.should.be.eq("name");
-
+            e.data.errors[0].should.be.eq("name is not valid string")
         }
 
     });
@@ -211,20 +215,21 @@ describe('validations e2e', () => {
         let manager = app.injector.get<SomeManager>(SomeManager);
         let data = new DataDto3();
         data.name = 3;
+        data.obj = {}
         let result;
 
         try {
             result = await manager.getData3(data);
-
+            let a = result
 
         } catch (e) {
 
-
+            console.log(e);
         }
 
         result.name.should.be.eq(3);
 
-    })
+    });
 
     it('should call invalid validate arg with custom dto', async () => {
         let manager = app.injector.get<SomeManager>(SomeManager);
@@ -233,27 +238,10 @@ describe('validations e2e', () => {
         try {
             data = await manager.getData3(data);
         } catch (e) {
-            e.data[0].property.should.be.eq("name");
+            e.data.errors[0].should.be.eq("name must be a number");
         }
     });
 
-    it('should call transform dto', async () => {
-        let manager = app.injector.get<SomeManager>(SomeManager);
-
-        let result = await manager.getData4({name2: 1});
-
-        result.should.be.ok
-    });
-
-    it('should call transform after dto', async () => {
-        let manager = app.injector.get<SomeManager>(SomeManager);
-
-        let result = await manager.getData5({name2: 1});
-
-        //(result.constructor === DataDto3).should.be.ok;
-
-        result.should.be.instanceOf(DataDto3)
-    });
 
     it('should call valid validate arg with custom dto', async () => {
         let manager = app.injector.get<SomeManager>(SomeManager);
@@ -279,13 +267,31 @@ describe('validations e2e', () => {
     it('should call validate with groups', async () => {
         let manager = app.injector.get<SomeManager>(SomeManager);
 
-        let result = await manager.getData6({name2: "22", name: "1"});
+        let result = await manager.getData6({ name: "1"});
 
         result.name.should.be.eq(1);
         should.not.exist(result.name2);
 
 
     });
+
+    // it.only('should call array', async () => {
+    //
+    //     class Dto {
+    //         @IsNumber({}, {each: true})
+    //         test: number[]
+    //     }
+    //
+    //
+    //     let cls = plainToClass(Dto, {test: ["aaaaa"]});
+    //
+    //     let result = await validate(cls)
+    //
+    //     result.name.should.be.eq(1);
+    //     should.not.exist(result.name2);
+    //
+    //
+    // });
 
 
 });

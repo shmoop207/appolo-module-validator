@@ -1,32 +1,30 @@
-import {IsString, MinLength, IsNumber, IsOptional} from "class-validator";
-import {IsObject} from "../../../../module/src/validators/isObject";
+import {string,number,object} from "appolo-validator";
 
 export class DataDto {
-    @IsString()
+    @string()
     name: string;
 }
 
 export class DataDto3 {
-    @IsNumber()
+    @number().toFloat()
     name: number;
 
-    @IsObject()
-    @IsOptional()
+    @object()
     obj: any
 }
 
 
 export class DataDtoInherit extends DataDto3 {
-    @IsNumber()
+    @number()
     name2: number;
 
 }
 
 
 export class DtoGroups {
-    @IsNumber()
+    @number()
     name: number;
 
-    @IsString({groups: ["test"]})
+    @string({groups: ["test"]})
     name2: string
 }

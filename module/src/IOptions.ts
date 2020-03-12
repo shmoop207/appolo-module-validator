@@ -1,16 +1,14 @@
 import {IModuleOptions} from "appolo";
-import    joi = require('joi');
-import {ValidationError, ValidatorOptions} from "class-validator";
-import {ClassTransformOptions,} from "class-transformer";
+import {IOptions as ValidatorOptions} from "appolo-validator";
 
 
-export interface IOptions extends ValidateOptions, IModuleOptions {
+export interface IOptions extends ValidatorOptions, IModuleOptions {
 }
 
 export interface ValidateOptions {
 
-    validatorOptions?: ValidatorOptions
-    transformOptions?: ClassTransformOptions,
-    validationErrorFormat?: (results: ValidationError[]) => string
-    valueField?: string
+    // validatorOptions?: ValidatorOptions
+    // transformOptions?: ClassTransformOptions,
+    // validationErrorFormat?: (results: ValidationError[]) => string
+    // valueField?: string
 }

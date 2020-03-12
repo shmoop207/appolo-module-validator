@@ -1,77 +1,65 @@
 "use strict";
-import {Controller, controller, IRequest, IResponse, get,query,model} from 'appolo';
-import {IsObject, validate,Type} from "../../../../index";
-import {IsString, Length,MinLength,IsNumber,ValidateNested,IsOptional,Allow,IsBoolean,IsArray} from "class-validator";
+import {Controller, controller, IRequest, IResponse, get, query, model} from 'appolo';
+import {validate, string, number, object, boolean, array} from "../../../../index";
 
 export class ValidationsDto {
-    @IsString()
-    @Length(10)
+
+    @string().min(10)
     test: string
 }
 
 class AuthDto {
-    @IsString()
-    @MinLength(3)
+    @string().min(3)
     userName: string;
 
-    @IsString()
-    @MinLength(3)
+    @string().min(3)
     password: string;
 
 
 }
 
 class NestedObject {
-    @IsString()
+    @string()
     test: string;
 
-    @IsNumber()
+    @string()
     test2: number;
 }
 
 class ObjectDto {
 
-    @IsNumber()
-    b:number;
+    @number()
+    b: number;
 
-    @ValidateNested()
-    a:NestedObject
+    @object(NestedObject)
+    a: NestedObject
 }
 
 export type CrudItemParams<T> = { [J in keyof Partial<T>]: any };
 
 export class GetAllModel<T> {
 
-    @IsNumber()
-    @IsOptional()
+    @number().optional()
     public page: number;
 
-    @IsNumber()
-    @IsOptional()
+    @number().optional()
     public pageSize: number;
 
-    @IsObject()
-    @IsOptional()
+    @object().optional()
     public sort?: CrudItemParams<T>;
 
-    @IsObject()
-    @IsOptional()
+    @object().optional()
     public filter?: CrudItemParams<T>;
 
-    @IsObject()
-    @IsOptional()
+    @object().optional()
     public fields?: CrudItemParams<T>;
 
-    @IsOptional()
-    @IsArray()
-    @IsObject({each:true})
+    @array(object()).optional()
     public populate?: any[];
 
-    @IsOptional()
-    @IsBoolean()
-    lean:boolean
+    @boolean().optional()
+    lean: boolean
 }
-
 
 
 @controller()
@@ -91,20 +79,20 @@ export class ValidationController extends Controller {
 
     @get("/test/validations/auth")
     @validate()
-    validation(req: IRequest, res: IResponse,@query() model: AuthDto) {
+    validation(req: IRequest, res: IResponse, @query() model: AuthDto) {
         res.json(model)
     }
 
     @get('/test/validations/param_object')
     @validate()
-    public validationObject(req: IRequest, res: IResponse,@query() model: ObjectDto) {
+    public validationObject(req: IRequest, res: IResponse, @query() model: ObjectDto) {
 
 
         res.json({model: model, name: this.constructor.name})
     }
 
     @get('/test/validations/get_all')
-    public async getAll(@validate() @validate() @model() model: GetAllModel<any>,...rest:any[]) {
+    public async getAll(@validate() @validate() @model() model: GetAllModel<any>, ...rest: any[]) {
 
         return model;
     }

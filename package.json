@@ -1,39 +1,34 @@
 {
   "name": "@appolo/validator",
-  "version": "0.0.17",
+  "version": "1.0.0",
   "description": "appolo validator module",
   "keywords": [
     "appolo"
   ],
-  "main": "index.js",
   "publishConfig": {
     "access": "public"
   },
   "dependencies": {
-    "@hapi/joi": "^16.1.7",
-    "@types/joi": "^14.3.3",
     "appolo": "^6.0.88",
-    "appolo-utils": "0.0.9",
-    "class-transformer": "^0.2.3",
-    "class-validator": "^0.10.2",
-    "lodash": "^4.17.15"
+    "appolo-utils": "^0.0.38",
+    "appolo-validator": "github:shmoop207/appolo-validator"
   },
   "devDependencies": {
-    "sinon": "^7.3.2",
-    "sinon-chai": "^3.3.0",
+    "sinon": "^9.0.1",
+    "sinon-chai": "^3.5.0",
     "@types/chai-http": "^4.2.0",
-    "@types/sinon": "^7.0.13",
-    "@types/sinon-chai": "^3.2.2",
+    "@types/sinon": "^7.5.2",
+    "@types/sinon-chai": "^3.2.3",
     "chai-http": "^4.3.0",
     "supertest": "^4.0.2",
     "@types/supertest": "^2.0.8",
-    "@types/chai": "^4.1.7",
-    "@types/lodash": "^4.14.136",
-    "@types/mocha": "^5.2.7",
-    "@types/node": "^12.6.8",
+    "@types/chai": "^4.2.10",
+    "@types/lodash": "^4.14.149",
+    "@types/mocha": "^7.0.2",
+    "@types/node": "^13.9.0",
     "chai": "^4.2.0",
-    "mocha": "^6.2.0",
-    "typescript": "^3.6.2"
+    "mocha": "^7.1.0",
+    "typescript": "^3.8.3"
   },
   "repository": {
     "type": "git",

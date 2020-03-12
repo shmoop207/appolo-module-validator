@@ -1,13 +1,6 @@
-import {ValidationError} from "class-validator";
-import * as _ from "lodash";
 import {IOptions} from "./IOptions";
 
 export const Defaults: Partial<IOptions> = {
-    validatorOptions: {
-        whitelist:true,
-        validationError: {target: false, value: false}
-    }, transformOptions: {
-        enableImplicitConversion: true
-    },
-    validationErrorFormat: (results: ValidationError[]) => results.toString()
-}
+    convert: true, stripUnknown: true
+
+};
