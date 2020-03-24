@@ -1,6 +1,6 @@
 {
   "name": "@appolo/validator",
-  "version": "1.0.0",
+  "version": "7.0.4",
   "description": "appolo validator module",
   "keywords": [
     "appolo"
@@ -9,9 +9,9 @@
     "access": "public"
   },
   "dependencies": {
-    "appolo": "^6.0.88",
-    "appolo-utils": "^0.0.38",
-    "appolo-validator": "github:shmoop207/appolo-validator"
+    "appolo": "^7.0.2",
+    "appolo-utils": "^0.0.47",
+    "appolo-validator": "^1.0.3"
   },
   "devDependencies": {
     "sinon": "^9.0.1",
@@ -22,12 +22,12 @@
     "chai-http": "^4.3.0",
     "supertest": "^4.0.2",
     "@types/supertest": "^2.0.8",
-    "@types/chai": "^4.2.10",
+    "@types/chai": "^4.2.11",
     "@types/lodash": "^4.14.149",
     "@types/mocha": "^7.0.2",
-    "@types/node": "^13.9.0",
+    "@types/node": "^13.9.2",
     "chai": "^4.2.0",
-    "mocha": "^7.1.0",
+    "mocha": "^7.1.1",
     "typescript": "^3.8.3"
   },
   "repository": {

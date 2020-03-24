@@ -72,16 +72,16 @@ tslib_1.__decorate([
 ], GetAllModel.prototype, "lean", void 0);
 exports.GetAllModel = GetAllModel;
 let ValidationController = class ValidationController extends appolo_1.Controller {
-    test(req, res, model) {
+    test(model, req, res) {
         res.json({ working: true, controllerName: this.route.controller, model: model });
     }
-    test2(req, res, model) {
+    test2(model, req, res) {
         res.json({ working: true, controllerName: this.route.controller, model: model });
     }
-    validation(req, res, model) {
+    validation(model, req, res) {
         res.json(model);
     }
-    validationObject(req, res, model) {
+    validationObject(model, req, res) {
         res.json({ model: model, name: this.constructor.name });
     }
     async getAll(model, ...rest) {
@@ -91,32 +91,32 @@ let ValidationController = class ValidationController extends appolo_1.Controlle
 tslib_1.__decorate([
     appolo_1.get("/test/validations/"),
     index_1.validate(),
-    tslib_1.__param(2, appolo_1.query()),
+    tslib_1.__param(0, appolo_1.query()),
     tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, Object, ValidationsDto]),
+    tslib_1.__metadata("design:paramtypes", [ValidationsDto, Object, Object]),
     tslib_1.__metadata("design:returntype", void 0)
 ], ValidationController.prototype, "test", null);
 tslib_1.__decorate([
     index_1.validate(),
-    tslib_1.__param(2, appolo_1.query()),
+    tslib_1.__param(0, appolo_1.query()),
     tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, Object, ValidationsDto]),
+    tslib_1.__metadata("design:paramtypes", [ValidationsDto, Object, Object]),
     tslib_1.__metadata("design:returntype", void 0)
 ], ValidationController.prototype, "test2", null);
 tslib_1.__decorate([
     appolo_1.get("/test/validations/auth"),
     index_1.validate(),
-    tslib_1.__param(2, appolo_1.query()),
+    tslib_1.__param(0, appolo_1.query()),
     tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, Object, AuthDto]),
+    tslib_1.__metadata("design:paramtypes", [AuthDto, Object, Object]),
     tslib_1.__metadata("design:returntype", void 0)
 ], ValidationController.prototype, "validation", null);
 tslib_1.__decorate([
     appolo_1.get('/test/validations/param_object'),
     index_1.validate(),
-    tslib_1.__param(2, appolo_1.query()),
+    tslib_1.__param(0, appolo_1.query()),
     tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, Object, ObjectDto]),
+    tslib_1.__metadata("design:paramtypes", [ObjectDto, Object, Object]),
     tslib_1.__metadata("design:returntype", void 0)
 ], ValidationController.prototype, "validationObject", null);
 tslib_1.__decorate([

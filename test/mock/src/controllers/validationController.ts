@@ -67,25 +67,25 @@ export class ValidationController extends Controller {
 
     @get("/test/validations/")
     @validate()
-    test(req: IRequest, res: IResponse, @query() model: ValidationsDto) {
+    test(@query() model: ValidationsDto,req: IRequest, res: IResponse ) {
         res.json({working: true, controllerName: this.route.controller, model: model})
     }
 
     @validate()
-    test2(req: IRequest, res: IResponse, @query() model: ValidationsDto) {
+    test2(@query() model: ValidationsDto,req: IRequest, res: IResponse, ) {
         res.json({working: true, controllerName: this.route.controller, model: model})
     }
 
 
     @get("/test/validations/auth")
     @validate()
-    validation(req: IRequest, res: IResponse, @query() model: AuthDto) {
+    validation(@query() model: AuthDto,req: IRequest, res: IResponse, ) {
         res.json(model)
     }
 
     @get('/test/validations/param_object')
     @validate()
-    public validationObject(req: IRequest, res: IResponse, @query() model: ObjectDto) {
+    public validationObject( @query() model: ObjectDto,req: IRequest, res: IResponse,) {
 
 
         res.json({model: model, name: this.constructor.name})

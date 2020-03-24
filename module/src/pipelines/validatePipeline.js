@@ -7,8 +7,10 @@ let ValidatePipeLine = class ValidatePipeLine {
     async run(context, next) {
         let opts = context.metaData.options;
         let promises = [];
-        for (let i = 0; i < (context.values || []).length; i++) {
-            let item = context.values[i];
+        let values = context.values || [];
+        values = context.metaData.validatorType ? [values[0]] : values;
+        for (let i = 0; i < values.length; i++) {
+            let item = context.values[0];
             let type = context.metaData.validatorType || item.type;
             if (typeof type === "function" || typeof type === "object") {
                 let schema = this.validator.getSchema(type);

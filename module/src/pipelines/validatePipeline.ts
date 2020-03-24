@@ -1,4 +1,4 @@
-import {define, BadRequestError, IPipeline, singleton, inject, initMethod, PipelineContext, Reflector} from 'appolo';
+import {define, BadRequestError, IPipeline, singleton, inject, initMethod, PipelineContext} from 'appolo';
 import {IOptions, ValidateOptions} from "../IOptions";
 import {Validator, AnySchema, ValidationErrorsError} from "appolo-validator";
 
@@ -16,8 +16,10 @@ export class ValidatePipeLine implements IPipeline {
 
         let promises = [];
 
-        for (let i = 0; i < (context.values || []).length; i++) {
-            let item = context.values[i];
+        let values = context.values || [];
+        values = context.metaData.validatorType ? [values[0]] : values;
+        for (let i = 0; i < values.length; i++) {
+            let item = context.values[0];
             let type = context.metaData.validatorType || item.type;
 
             if (typeof type === "function" || typeof type === "object") {

@@ -16,14 +16,14 @@ describe('validations e2e', () => {
 
     before(async () => {
         app = createApp({
-            port: 8183,
+            port: 8184,
             environment: "testing",
             root: process.cwd() + '/test/mock/',
         });
         try {
             await app.launch();
         } catch (e) {
-            console.log(e)
+            throw  e
         }
 
     });
@@ -267,10 +267,22 @@ describe('validations e2e', () => {
     it('should call validate with groups', async () => {
         let manager = app.injector.get<SomeManager>(SomeManager);
 
-        let result = await manager.getData6({ name: "1"});
+        let result = await manager.getData6({name: "1"});
 
         result.name.should.be.eq(1);
         should.not.exist(result.name2);
+
+
+    });
+
+    it('should call validate with validate object', async () => {
+        let manager = app.injector.get<SomeManager>(SomeManager);
+
+        let result = await manager.getData7({name: "1", name2: 2,name3:3});
+
+        result.name.should.be.eq(1);
+        result.name2.should.be.eq(2)
+        should.not.exist(result.name3);
 
 
     });

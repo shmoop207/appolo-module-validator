@@ -1,14 +1,10 @@
 import {IModuleOptions} from "appolo";
-import {IOptions as ValidatorOptions} from "appolo-validator";
+import {IValidateOptions as ValidatorOptions,IValidateOptions} from "appolo-validator";
 
 
 export interface IOptions extends ValidatorOptions, IModuleOptions {
 }
 
-export interface ValidateOptions {
+export interface ValidateOptions extends IValidateOptions{
 
-    // validatorOptions?: ValidatorOptions
-    // transformOptions?: ClassTransformOptions,
-    // validationErrorFormat?: (results: ValidationError[]) => string
-    // valueField?: string
 }

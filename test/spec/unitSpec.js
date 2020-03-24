@@ -14,7 +14,7 @@ describe('validations e2e', () => {
     let app;
     before(async () => {
         app = appolo_1.createApp({
-            port: 8183,
+            port: 8184,
             environment: "testing",
             root: process.cwd() + '/test/mock/',
         });
@@ -22,7 +22,7 @@ describe('validations e2e', () => {
             await app.launch();
         }
         catch (e) {
-            console.log(e);
+            throw e;
         }
     });
     it('should should call with validation error', async () => {
@@ -186,6 +186,13 @@ describe('validations e2e', () => {
         let result = await manager.getData6({ name: "1" });
         result.name.should.be.eq(1);
         should.not.exist(result.name2);
+    });
+    it('should call validate with validate object', async () => {
+        let manager = app.injector.get(someManager_1.SomeManager);
+        let result = await manager.getData7({ name: "1", name2: 2, name3: 3 });
+        result.name.should.be.eq(1);
+        result.name2.should.be.eq(2);
+        should.not.exist(result.name3);
     });
     // it.only('should call array', async () => {
     //

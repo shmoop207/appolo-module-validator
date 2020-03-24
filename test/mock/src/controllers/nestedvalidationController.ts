@@ -7,9 +7,9 @@ import {ValidationController, ValidationsDto} from "./validationController";
 export class NestedvalidationController extends ValidationController {
 
     @get("/test/nested/")
-    test2(req: IRequest, res: IResponse, model: ValidationsDto) {
+    test2(model: ValidationsDto, req: IRequest, res: IResponse,) {
 
-        return super.test2(req, res, model)
+        return super.test2(model, req, res)
     }
 
 
