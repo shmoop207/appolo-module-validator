@@ -41,8 +41,8 @@ describe('validations e2e', () => {
         should.exist(res.body);
 
         res.body.error.should.contain("failed to validate");
-        res.body.message.should.contain("Bad Request")
-        res.body.errors.length.should.eq(2)
+        res.body.message.should.contain("Bad Request");
+        res.body.errors.length.should.eq(1)
     });
 
 
@@ -58,7 +58,7 @@ describe('validations e2e', () => {
         should.exist(res.body);
 
         res.body.error.should.contain("failed to validate");
-        res.body.errors.length.should.be.eq(2);
+        res.body.errors.length.should.be.eq(1);
         res.body.message.should.contain("Bad Request")
     });
 

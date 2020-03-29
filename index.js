@@ -1,9 +1,24 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const tslib_1 = require("tslib");
 const validationModule_1 = require("./module/validationModule");
 exports.ValidationModule = validationModule_1.ValidationModule;
 const validateDecorator_1 = require("./module/src/decorators/validateDecorator");
 exports.validate = validateDecorator_1.validate;
-tslib_1.__exportStar(require("appolo-validator"), exports);
+const appolo_validator_1 = require("appolo-validator");
+exports.string = appolo_validator_1.string;
+exports.object = appolo_validator_1.object;
+exports.number = appolo_validator_1.number;
+exports.registerConverter = appolo_validator_1.registerConverter;
+exports.array = appolo_validator_1.array;
+exports.boolean = appolo_validator_1.boolean;
+exports.schema = appolo_validator_1.schema;
+exports.registerSchema = appolo_validator_1.registerSchema;
+exports.and = appolo_validator_1.and;
+exports.buffer = appolo_validator_1.buffer;
+exports.date = appolo_validator_1.date;
+exports.when = appolo_validator_1.when;
+exports.any = appolo_validator_1.any;
+exports.or = appolo_validator_1.or;
+exports.ref = appolo_validator_1.ref;
+exports.func = appolo_validator_1.func;
 //# sourceMappingURL=index.js.map

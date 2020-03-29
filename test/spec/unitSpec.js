@@ -33,7 +33,7 @@ describe('validations e2e', () => {
         should.exist(res.body);
         res.body.error.should.contain("failed to validate");
         res.body.message.should.contain("Bad Request");
-        res.body.errors.length.should.eq(2);
+        res.body.errors.length.should.eq(1);
     });
     it('should should call nested with validation error', async () => {
         let res = await request(app.handle)
@@ -42,7 +42,7 @@ describe('validations e2e', () => {
         res.should.to.be.json;
         should.exist(res.body);
         res.body.error.should.contain("failed to validate");
-        res.body.errors.length.should.be.eq(2);
+        res.body.errors.length.should.be.eq(1);
         res.body.message.should.contain("Bad Request");
     });
     it('should call validations error', async () => {
