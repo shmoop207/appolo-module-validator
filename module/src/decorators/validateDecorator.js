@@ -10,8 +10,8 @@ function validate(validatorType, options = {}) {
             validatorType = index_1.object().keys(validatorType);
         }
         else {
-            validatorType = null;
             options = validatorType;
+            validatorType = null;
         }
     }
     else if (arguments.length == 2 && isSchemaObject(validatorType)) {

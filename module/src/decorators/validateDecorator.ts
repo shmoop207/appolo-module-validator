@@ -12,8 +12,9 @@ export function validate(validatorType?: ValidateOptions | IClass | { [index: st
         if (isSchemaObject(validatorType)) {
             validatorType = object().keys(validatorType as { [index: string]: AnySchema | Pick<When, any> })
         } else {
-            validatorType = null;
             options = validatorType as ValidateOptions;
+            validatorType = null;
+
         }
     } else if (arguments.length == 2 && isSchemaObject(validatorType)) {
         validatorType = object().keys(validatorType as { [index: string]: AnySchema | Pick<When, any> })
