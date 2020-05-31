@@ -5,7 +5,7 @@ const appolo_1 = require("appolo");
 const appolo_validator_1 = require("appolo-validator");
 let ValidatePipeLine = class ValidatePipeLine {
     async run(context, next) {
-        let opts = context.metaData.options;
+        let opts = context.metaData.options || {};
         let promises = [];
         let values = context.values || [];
         values = context.metaData.validatorType ? [values[0]] : values;

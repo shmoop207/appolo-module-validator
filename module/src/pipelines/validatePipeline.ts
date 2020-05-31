@@ -12,7 +12,7 @@ export class ValidatePipeLine implements IPipeline {
 
     public async run(context: PipelineContext, next) {
 
-        let opts: ValidateOptions = context.metaData.options;
+        let opts: ValidateOptions = context.metaData.options || {};
 
         let promises = [];
 
