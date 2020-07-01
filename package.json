@@ -1,6 +1,6 @@
 {
   "name": "@appolo/validator",
-  "version": "7.0.9",
+  "version": "7.0.10",
   "description": "appolo validator module",
   "keywords": [
     "appolo"
@@ -9,9 +9,9 @@
     "access": "public"
   },
   "dependencies": {
-    "appolo": "^7.0.2",
-    "appolo-utils": "^0.0.53",
-    "appolo-validator": "^1.0.8"
+    "appolo": "^7.0.5",
+    "appolo-utils": "^0.0.57",
+    "appolo-validator": "^1.0.11"
   },
   "devDependencies": {
     "sinon": "^9.0.1",
