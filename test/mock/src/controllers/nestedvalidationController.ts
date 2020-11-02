@@ -1,5 +1,5 @@
 "use strict";
-import {Controller, controller, IRequest, IResponse, get, query} from 'appolo';
+import {Controller, controller, IRequest, IResponse, get, query} from '@appolo/route';
 import {ValidationController, ValidationsDto} from "./validationController";
 
 

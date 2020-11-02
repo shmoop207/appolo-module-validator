@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.DtoGroups = exports.DataDtoInherit = exports.DataDto3 = exports.DataDto = void 0;
 const tslib_1 = require("tslib");
 const appolo_validator_1 = require("appolo-validator");
 class DataDto {

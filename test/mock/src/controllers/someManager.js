@@ -1,7 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.SomeManager = void 0;
 const tslib_1 = require("tslib");
-const appolo_1 = require("appolo");
+const inject_1 = require("@appolo/inject");
 const index_1 = require("../../../../index");
 const common_1 = require("../common/common");
 let SomeManager = class SomeManager {
@@ -55,8 +56,8 @@ tslib_1.__decorate([
     tslib_1.__metadata("design:returntype", Promise)
 ], SomeManager.prototype, "getData7", null);
 SomeManager = tslib_1.__decorate([
-    appolo_1.define(),
-    appolo_1.singleton()
+    inject_1.define(),
+    inject_1.singleton()
 ], SomeManager);
 exports.SomeManager = SomeManager;
 //# sourceMappingURL=someManager.js.map

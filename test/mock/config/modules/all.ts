@@ -1,9 +1,11 @@
-import {App} from "appolo";
 import {ValidationModule} from "../../../../";
+import {App} from "@appolo/core";
+import  qs = require( "qs");
 
 export = async function (app: App) {
 
-    await app.module(new ValidationModule())
+     app.module.use(ValidationModule)
+     app.set("qsParser",qs.parse)
 }
 
 

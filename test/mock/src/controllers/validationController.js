@@ -1,7 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.ValidationController = exports.GetAllModel = exports.ValidationsDto = void 0;
 const tslib_1 = require("tslib");
-const appolo_1 = require("appolo");
+const route_1 = require("@appolo/route");
 const index_1 = require("../../../../index");
 class ValidationsDto {
 }
@@ -71,7 +72,7 @@ tslib_1.__decorate([
     tslib_1.__metadata("design:type", Boolean)
 ], GetAllModel.prototype, "lean", void 0);
 exports.GetAllModel = GetAllModel;
-let ValidationController = class ValidationController extends appolo_1.Controller {
+let ValidationController = class ValidationController extends route_1.Controller {
     test(model, req, res) {
         res.json({ working: true, controllerName: this.route.controller, model: model });
     }
@@ -89,45 +90,45 @@ let ValidationController = class ValidationController extends appolo_1.Controlle
     }
 };
 tslib_1.__decorate([
-    appolo_1.get("/test/validations/"),
+    route_1.get("/test/validations/"),
     index_1.validate(),
-    tslib_1.__param(0, appolo_1.query()),
+    tslib_1.__param(0, route_1.query()),
     tslib_1.__metadata("design:type", Function),
     tslib_1.__metadata("design:paramtypes", [ValidationsDto, Object, Object]),
     tslib_1.__metadata("design:returntype", void 0)
 ], ValidationController.prototype, "test", null);
 tslib_1.__decorate([
     index_1.validate(),
-    tslib_1.__param(0, appolo_1.query()),
+    tslib_1.__param(0, route_1.query()),
     tslib_1.__metadata("design:type", Function),
     tslib_1.__metadata("design:paramtypes", [ValidationsDto, Object, Object]),
     tslib_1.__metadata("design:returntype", void 0)
 ], ValidationController.prototype, "test2", null);
 tslib_1.__decorate([
-    appolo_1.get("/test/validations/auth"),
+    route_1.get("/test/validations/auth"),
     index_1.validate(),
-    tslib_1.__param(0, appolo_1.query()),
+    tslib_1.__param(0, route_1.query()),
     tslib_1.__metadata("design:type", Function),
     tslib_1.__metadata("design:paramtypes", [AuthDto, Object, Object]),
     tslib_1.__metadata("design:returntype", void 0)
 ], ValidationController.prototype, "validation", null);
 tslib_1.__decorate([
-    appolo_1.get('/test/validations/param_object'),
+    route_1.get('/test/validations/param_object'),
     index_1.validate(),
-    tslib_1.__param(0, appolo_1.query()),
+    tslib_1.__param(0, route_1.query()),
     tslib_1.__metadata("design:type", Function),
     tslib_1.__metadata("design:paramtypes", [ObjectDto, Object, Object]),
     tslib_1.__metadata("design:returntype", void 0)
 ], ValidationController.prototype, "validationObject", null);
 tslib_1.__decorate([
-    appolo_1.get('/test/validations/get_all'),
-    tslib_1.__param(0, index_1.validate()), tslib_1.__param(0, index_1.validate()), tslib_1.__param(0, appolo_1.model()),
+    route_1.get('/test/validations/get_all'),
+    tslib_1.__param(0, index_1.validate()), tslib_1.__param(0, index_1.validate()), tslib_1.__param(0, route_1.model()),
     tslib_1.__metadata("design:type", Function),
     tslib_1.__metadata("design:paramtypes", [GetAllModel, Object]),
     tslib_1.__metadata("design:returntype", Promise)
 ], ValidationController.prototype, "getAll", null);
 ValidationController = tslib_1.__decorate([
-    appolo_1.controller()
+    route_1.controller()
 ], ValidationController);
 exports.ValidationController = ValidationController;
 //# sourceMappingURL=validationController.js.map

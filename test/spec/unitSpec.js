@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const chai = require("chai");
 const request = require("supertest");
-const appolo_1 = require("appolo");
+const core_1 = require("@appolo/core");
 const sinonChai = require("sinon-chai");
 const chaiHttp = require("chai-http");
 const someManager_1 = require("../mock/src/controllers/someManager");
@@ -13,7 +13,7 @@ chai.use(sinonChai);
 describe('validations e2e', () => {
     let app;
     before(async () => {
-        app = appolo_1.createApp({
+        app = core_1.createApp({
             port: 8184,
             environment: "testing",
             root: process.cwd() + '/test/mock/',
@@ -26,7 +26,7 @@ describe('validations e2e', () => {
         }
     });
     it('should should call with validation error', async () => {
-        let res = await request(app.handle)
+        let res = await request(app.route.handle)
             .get('/test/validations/?user2_name=11');
         res.should.to.have.status(400);
         res.should.to.be.json;
@@ -36,7 +36,7 @@ describe('validations e2e', () => {
         res.body.errors.length.should.eq(1);
     });
     it('should should call nested with validation error', async () => {
-        let res = await request(app.handle)
+        let res = await request(app.route.handle)
             .get('/test/nested/?user2_name=11');
         res.should.to.have.status(400);
         res.should.to.be.json;
@@ -46,7 +46,7 @@ describe('validations e2e', () => {
         res.body.message.should.contain("Bad Request");
     });
     it('should call validations error', async () => {
-        let res = await request(app.handle)
+        let res = await request(app.route.handle)
             .get('/test/validations/');
         res.should.to.have.status(400);
         res.should.to.be.json;
@@ -54,7 +54,7 @@ describe('validations e2e', () => {
         res.body.error.should.be.ok;
     });
     it('should call validation be ok', async () => {
-        let res = await request(app.handle)
+        let res = await request(app.route.handle)
             .get('/test/validations/?test=test1111111');
         res.should.to.have.status(200);
         res.should.to.be.json;
@@ -62,7 +62,7 @@ describe('validations e2e', () => {
         res.body.model.test.should.be.ok;
     });
     it('should call validations auth ', async () => {
-        let res = await request(app.handle)
+        let res = await request(app.route.handle)
             .get('/test/validations/auth/?userName=aaa&password=1111');
         res.should.to.have.status(200);
         res.should.to.be.json;
@@ -70,23 +70,23 @@ describe('validations e2e', () => {
         res.body.userName.should.be.ok;
     });
     it('should call invalid validations auth ', async () => {
-        let res = await request(app.handle)
+        let res = await request(app.route.handle)
             .get('/test/validations/auth/?userName=aa&password=1111');
         res.should.to.have.status(400);
         res.should.to.be.json;
         should.exist(res.body);
     });
     it('should call validations param object', async () => {
-        let res = await request(app.handle)
+        let res = await request(app.route.handle)
             .get('/test/validations/param_object?b=1&a[test]=aaa&a[test2]=2');
         res.should.to.have.status(200);
         res.should.to.be.json;
         should.exist(res.body);
         res.body.model.a.test.should.be.eq("aaa");
-        res.body.name.should.be.eq("NestedvalidationController");
+        res.body.name.should.be.eq("ValidationController");
     });
     it('should call validations get all object', async () => {
-        let res = await request(app.handle)
+        let res = await request(app.route.handle)
             .get('/test/validations/get_all?filter=%7B%7D&fields=%7B%7D&sort=%7B%7D&populate[]=%7B%22path%22:%22game%22,%22select%22:%22name%22%7D');
         res.should.to.have.status(200);
         res.should.to.be.json;
@@ -104,7 +104,7 @@ describe('validations e2e', () => {
         });
     });
     it('should call invalid validations param object', async () => {
-        let res = await request(app.handle)
+        let res = await request(app.route.handle)
             .get('/test/validations/param_object?c=1&a[test]=aaa&a[test2]=2');
         res.should.to.have.status(400);
     });

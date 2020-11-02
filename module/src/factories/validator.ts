@@ -1,4 +1,4 @@
-import {define, factory, IFactory, singleton, inject, initMethod, Injector, Util} from 'appolo';
+import {define, factory, IFactory, singleton, inject, init, Injector, Util} from '@appolo/inject';
 import {validation, Validator as AValidator} from 'appolo-validator';
 import {IOptions} from "../IOptions";
 // import {

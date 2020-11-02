@@ -1,4 +1,6 @@
-import {define, BadRequestError, IPipeline, singleton, inject, initMethod, PipelineContext} from 'appolo';
+import {define,  singleton, inject, init} from '@appolo/inject';
+import { IPipeline, PipelineContext} from '@appolo/engine';
+import { BadRequestError} from '@appolo/route';
 import {IOptions, ValidateOptions} from "../IOptions";
 import {Validator, AnySchema, ValidationErrorsError} from "appolo-validator";
 

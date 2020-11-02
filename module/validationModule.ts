@@ -1,4 +1,4 @@
-import {Module, module, Util, Hooks, BadRequestError} from "appolo/index";
+import {Module, module,IModuleParams} from "@appolo/engine";
 import {IOptions} from "../index";
 import {Defaults} from "./src/defaults";
 import {ValidatePipeLine} from "./src/pipelines/validatePipeline";
@@ -10,8 +10,8 @@ export class ValidationModule extends Module<IOptions> {
 
     protected readonly Defaults: Partial<IOptions> = Defaults;
 
-    constructor(opts?: IOptions) {
-        super(opts);
+    public static for(options: IOptions): IModuleParams {
+        return {type: ValidationModule, options}
     }
 
     public beforeInitialize() {

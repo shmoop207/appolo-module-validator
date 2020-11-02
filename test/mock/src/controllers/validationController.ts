@@ -1,5 +1,5 @@
 "use strict";
-import {Controller, controller, IRequest, IResponse, get, query, model} from 'appolo';
+import {Controller, controller, IRequest, IResponse, get, query, model} from '@appolo/route';
 import {validate, string, number, object, boolean, array} from "../../../../index";
 
 export class ValidationsDto {

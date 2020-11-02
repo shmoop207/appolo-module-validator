@@ -1,7 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Validator = void 0;
 const tslib_1 = require("tslib");
-const appolo_1 = require("appolo");
+const inject_1 = require("@appolo/inject");
 const appolo_validator_1 = require("appolo-validator");
 // import {
 //     Validator as ClassValidator,
@@ -37,17 +38,17 @@ let Validator = class Validator {
     }
 };
 tslib_1.__decorate([
-    appolo_1.inject(),
-    tslib_1.__metadata("design:type", appolo_1.Injector)
+    inject_1.inject(),
+    tslib_1.__metadata("design:type", inject_1.Injector)
 ], Validator.prototype, "injector", void 0);
 tslib_1.__decorate([
-    appolo_1.inject(),
+    inject_1.inject(),
     tslib_1.__metadata("design:type", Object)
 ], Validator.prototype, "moduleOptions", void 0);
 Validator = tslib_1.__decorate([
-    appolo_1.define(),
-    appolo_1.singleton(),
-    appolo_1.factory()
+    inject_1.define(),
+    inject_1.singleton(),
+    inject_1.factory()
 ], Validator);
 exports.Validator = Validator;
 //# sourceMappingURL=validator.js.map

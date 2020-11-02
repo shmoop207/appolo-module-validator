@@ -1,6 +1,6 @@
 import * as chai from 'chai';
 import * as request from 'supertest';
-import {App, createApp} from 'appolo';
+import {App, createApp} from '@appolo/core';
 import sinon = require("sinon");
 import sinonChai = require("sinon-chai");
 import chaiHttp = require("chai-http");
@@ -31,7 +31,7 @@ describe('validations e2e', () => {
 
     it('should should call with validation error', async () => {
 
-        let res = await request(app.handle)
+        let res = await request(app.route.handle)
             .get('/test/validations/?user2_name=11');
 
         res.should.to.have.status(400);
@@ -48,7 +48,7 @@ describe('validations e2e', () => {
 
     it('should should call nested with validation error', async () => {
 
-        let res = await request(app.handle)
+        let res = await request(app.route.handle)
             .get('/test/nested/?user2_name=11');
 
         res.should.to.have.status(400);
@@ -64,7 +64,7 @@ describe('validations e2e', () => {
 
     it('should call validations error', async () => {
 
-        let res = await request(app.handle)
+        let res = await request(app.route.handle)
             .get('/test/validations/');
 
 
@@ -78,7 +78,7 @@ describe('validations e2e', () => {
 
     it('should call validation be ok', async () => {
 
-        let res = await request(app.handle)
+        let res = await request(app.route.handle)
             .get('/test/validations/?test=test1111111');
 
 
@@ -93,7 +93,7 @@ describe('validations e2e', () => {
 
     it('should call validations auth ', async () => {
 
-        let res = await request(app.handle)
+        let res = await request(app.route.handle)
             .get('/test/validations/auth/?userName=aaa&password=1111');
 
 
@@ -107,7 +107,7 @@ describe('validations e2e', () => {
 
     it('should call invalid validations auth ', async () => {
 
-        let res = await request(app.handle)
+        let res = await request(app.route.handle)
             .get('/test/validations/auth/?userName=aa&password=1111');
 
 
@@ -121,7 +121,7 @@ describe('validations e2e', () => {
 
     it('should call validations param object', async () => {
 
-        let res = await request(app.handle)
+        let res = await request(app.route.handle)
             .get('/test/validations/param_object?b=1&a[test]=aaa&a[test2]=2');
 
 
@@ -131,12 +131,12 @@ describe('validations e2e', () => {
         should.exist(res.body);
 
         res.body.model.a.test.should.be.eq("aaa");
-        res.body.name.should.be.eq("NestedvalidationController");
+        res.body.name.should.be.eq("ValidationController");
     });
 
     it('should call validations get all object', async () => {
 
-        let res = await request(app.handle)
+        let res = await request(app.route.handle)
             .get('/test/validations/get_all?filter=%7B%7D&fields=%7B%7D&sort=%7B%7D&populate[]=%7B%22path%22:%22game%22,%22select%22:%22name%22%7D');
 
 
@@ -160,7 +160,7 @@ describe('validations e2e', () => {
 
     it('should call invalid validations param object', async () => {
 
-        let res = await request(app.handle)
+        let res = await request(app.route.handle)
             .get('/test/validations/param_object?c=1&a[test]=aaa&a[test2]=2');
 
 
@@ -278,7 +278,7 @@ describe('validations e2e', () => {
     it('should call validate with validate object', async () => {
         let manager = app.injector.get<SomeManager>(SomeManager);
 
-        let result = await manager.getData7({name: "1", name2: 2,name3:3});
+        let result = await manager.getData7({name: "1", name2: 2, name3: 3});
 
         result.name.should.be.eq(1);
         result.name2.should.be.eq(2)
