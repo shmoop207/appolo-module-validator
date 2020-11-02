@@ -9,7 +9,7 @@
     "access": "public"
   },
   "scripts": {
-    "test": "mocha test --exit"
+    "test": "mocha test/spec --exit"
   },
   "dependencies": {
     "@appolo/core": "^8.0.5",
