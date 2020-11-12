@@ -21,6 +21,9 @@ let SomeManager = class SomeManager {
     async getData7(data) {
         return data;
     }
+    async getData8(num) {
+        return num;
+    }
 };
 tslib_1.__decorate([
     index_1.validate(),
@@ -55,6 +58,12 @@ tslib_1.__decorate([
     tslib_1.__metadata("design:paramtypes", [Object]),
     tslib_1.__metadata("design:returntype", Promise)
 ], SomeManager.prototype, "getData7", null);
+tslib_1.__decorate([
+    index_1.validate(index_1.number().range(1, 3)),
+    tslib_1.__metadata("design:type", Function),
+    tslib_1.__metadata("design:paramtypes", [Number]),
+    tslib_1.__metadata("design:returntype", Promise)
+], SomeManager.prototype, "getData8", null);
 SomeManager = tslib_1.__decorate([
     inject_1.define(),
     inject_1.singleton()

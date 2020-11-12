@@ -4,6 +4,7 @@ import {App, createApp} from '@appolo/core';
 import sinon = require("sinon");
 import sinonChai = require("sinon-chai");
 import chaiHttp = require("chai-http");
+import {CustomValidator} from "../mock/src/common/customValidator";
 import {SomeManager} from "../mock/src/controllers/someManager";
 import {DataDto, DataDto3} from "../mock/src/common/common";
 
@@ -239,6 +240,21 @@ describe('validations e2e', () => {
             data = await manager.getData3(data);
         } catch (e) {
             e.data.errors[0].should.be.eq("name must be a number");
+        }
+    });
+
+    it('should call custom validator', async () => {
+        let manager = app.injector.get<SomeManager>(SomeManager);
+        let customValidator = app.injector.get<CustomValidator>(CustomValidator);
+        let data = new DataDto();
+
+        try {
+            data = await manager.getData8(2);
+            data.should.be.eq(2);
+
+            data = await manager.getData8(5);
+        } catch (e) {
+            e.data.errors[0].should.be.eq("value has invalid range ");
         }
     });
 

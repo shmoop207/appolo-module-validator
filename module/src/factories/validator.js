@@ -12,29 +12,10 @@ const appolo_validator_1 = require("appolo-validator");
 let Validator = class Validator {
     async get() {
         //let $injector = this.injector;
-        let validator = await appolo_validator_1.validation(this.moduleOptions);
+        let validator = await appolo_validator_1.validation(Object.assign(Object.assign({}, this.moduleOptions), { container: (klass) => {
+                return this.injector.resolve(klass);
+            } }));
         return validator;
-        // useContainer({
-        //     get(someClass: any): any {
-        //
-        //         if(someClass === ClassValidator || someClass === MetadataStorage){
-        //             return null
-        //         }
-        //
-        //         let id = Util.getClassNameOrId(someClass);
-        //
-        //         if ($injector.hasDefinition(id)) {
-        //             return $injector.get(someClass)
-        //         }
-        //
-        //         return null
-        //
-        //
-        //     }
-        // }, {fallback: true, fallbackOnErrors: true});
-        //
-        //
-        // return new ClassValidator()
     }
 };
 tslib_1.__decorate([

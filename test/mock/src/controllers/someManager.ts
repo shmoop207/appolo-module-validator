@@ -34,4 +34,9 @@ export class SomeManager {
         return data
     }
 
+    @validate(number().range(1, 3))
+    public async getData8(num: number): Promise<any> {
+        return num
+    }
+
 }

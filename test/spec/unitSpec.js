@@ -5,6 +5,7 @@ const request = require("supertest");
 const core_1 = require("@appolo/core");
 const sinonChai = require("sinon-chai");
 const chaiHttp = require("chai-http");
+const customValidator_1 = require("../mock/src/common/customValidator");
 const someManager_1 = require("../mock/src/controllers/someManager");
 const common_1 = require("../mock/src/common/common");
 let should = chai.should();
@@ -163,6 +164,19 @@ describe('validations e2e', () => {
         }
         catch (e) {
             e.data.errors[0].should.be.eq("name must be a number");
+        }
+    });
+    it('should call custom validator', async () => {
+        let manager = app.injector.get(someManager_1.SomeManager);
+        let customValidator = app.injector.get(customValidator_1.CustomValidator);
+        let data = new common_1.DataDto();
+        try {
+            data = await manager.getData8(2);
+            data.should.be.eq(2);
+            data = await manager.getData8(5);
+        }
+        catch (e) {
+            e.data.errors[0].should.be.eq("value has invalid range ");
         }
     });
     it('should call valid validate arg with custom dto', async () => {

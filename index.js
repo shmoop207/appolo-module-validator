@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.func = exports.ref = exports.or = exports.any = exports.when = exports.date = exports.buffer = exports.and = exports.registerSchema = exports.schema = exports.boolean = exports.array = exports.registerConverter = exports.number = exports.object = exports.string = exports.validate = exports.ValidationModule = void 0;
+exports.DateSchema = exports.BufferSchema = exports.FunctionSchema = exports.ObjectSchema = exports.NumberSchema = exports.BooleanSchema = exports.ArraySchema = exports.AnySchema = exports.StringSchema = exports.func = exports.ref = exports.or = exports.any = exports.when = exports.date = exports.buffer = exports.and = exports.registerSchema = exports.schema = exports.boolean = exports.array = exports.registerConstraint = exports.registerConverter = exports.number = exports.object = exports.string = exports.validate = exports.ValidationModule = void 0;
 const validationModule_1 = require("./module/validationModule");
 Object.defineProperty(exports, "ValidationModule", { enumerable: true, get: function () { return validationModule_1.ValidationModule; } });
 const validateDecorator_1 = require("./module/src/decorators/validateDecorator");
@@ -22,4 +22,14 @@ Object.defineProperty(exports, "any", { enumerable: true, get: function () { ret
 Object.defineProperty(exports, "or", { enumerable: true, get: function () { return appolo_validator_1.or; } });
 Object.defineProperty(exports, "ref", { enumerable: true, get: function () { return appolo_validator_1.ref; } });
 Object.defineProperty(exports, "func", { enumerable: true, get: function () { return appolo_validator_1.func; } });
+Object.defineProperty(exports, "StringSchema", { enumerable: true, get: function () { return appolo_validator_1.StringSchema; } });
+Object.defineProperty(exports, "AnySchema", { enumerable: true, get: function () { return appolo_validator_1.AnySchema; } });
+Object.defineProperty(exports, "ArraySchema", { enumerable: true, get: function () { return appolo_validator_1.ArraySchema; } });
+Object.defineProperty(exports, "BooleanSchema", { enumerable: true, get: function () { return appolo_validator_1.BooleanSchema; } });
+Object.defineProperty(exports, "NumberSchema", { enumerable: true, get: function () { return appolo_validator_1.NumberSchema; } });
+Object.defineProperty(exports, "ObjectSchema", { enumerable: true, get: function () { return appolo_validator_1.ObjectSchema; } });
+Object.defineProperty(exports, "FunctionSchema", { enumerable: true, get: function () { return appolo_validator_1.FunctionSchema; } });
+Object.defineProperty(exports, "BufferSchema", { enumerable: true, get: function () { return appolo_validator_1.BufferSchema; } });
+Object.defineProperty(exports, "DateSchema", { enumerable: true, get: function () { return appolo_validator_1.DateSchema; } });
+Object.defineProperty(exports, "registerConstraint", { enumerable: true, get: function () { return appolo_validator_1.registerConstraint; } });
 //# sourceMappingURL=index.js.map

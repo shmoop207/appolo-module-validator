@@ -13,8 +13,8 @@
   },
   "dependencies": {
     "@appolo/core": "^8.0.5",
-    "@appolo/utils": "^8.0.3",
-    "appolo-validator": "^8.0.0"
+    "@appolo/utils": "^8.0.4",
+    "appolo-validator": "^8.0.2"
   },
   "devDependencies": {
     "@types/chai": "^4.2.14",
