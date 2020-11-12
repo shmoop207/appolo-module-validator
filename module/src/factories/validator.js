@@ -4,11 +4,6 @@ exports.Validator = void 0;
 const tslib_1 = require("tslib");
 const inject_1 = require("@appolo/inject");
 const appolo_validator_1 = require("appolo-validator");
-// import {
-//     Validator as ClassValidator,
-//     useContainer,
-//    MetadataStorage
-// } from "class-validator";
 let Validator = class Validator {
     async get() {
         //let $injector = this.injector;

@@ -1,6 +1,6 @@
 "use strict";
 import {Controller, controller, IRequest, IResponse, get, query, model} from '@appolo/route';
-import {validate, string, number, object, boolean, array} from "../../../../index";
+import {validate, string, number, object, boolean, array, validateModel} from "../../../../index";
 
 export class ValidationsDto {
 
@@ -96,6 +96,13 @@ export class ValidationController extends Controller {
 
         return model;
     }
+
+    @get('/test/validations/get_all2')
+    public async getAll2(@validateModel() model: GetAllModel<any>, ...rest: any[]) {
+
+        return model;
+    }
+
 
 }
 

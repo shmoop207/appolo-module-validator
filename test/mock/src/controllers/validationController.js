@@ -88,6 +88,9 @@ let ValidationController = class ValidationController extends route_1.Controller
     async getAll(model, ...rest) {
         return model;
     }
+    async getAll2(model, ...rest) {
+        return model;
+    }
 };
 tslib_1.__decorate([
     route_1.get("/test/validations/"),
@@ -127,6 +130,13 @@ tslib_1.__decorate([
     tslib_1.__metadata("design:paramtypes", [GetAllModel, Object]),
     tslib_1.__metadata("design:returntype", Promise)
 ], ValidationController.prototype, "getAll", null);
+tslib_1.__decorate([
+    route_1.get('/test/validations/get_all2'),
+    tslib_1.__param(0, index_1.validateModel()),
+    tslib_1.__metadata("design:type", Function),
+    tslib_1.__metadata("design:paramtypes", [GetAllModel, Object]),
+    tslib_1.__metadata("design:returntype", Promise)
+], ValidationController.prototype, "getAll2", null);
 ValidationController = tslib_1.__decorate([
     route_1.controller()
 ], ValidationController);

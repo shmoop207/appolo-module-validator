@@ -104,6 +104,24 @@ describe('validations e2e', () => {
             ]
         });
     });
+    it('should call validate model', async () => {
+        let res = await request(app.route.handle)
+            .get('/test/validations/get_all2?filter=%7B%7D&fields=%7B%7D&sort=%7B%7D&populate[]=%7B%22path%22:%22game%22,%22select%22:%22name%22%7D');
+        res.should.to.have.status(200);
+        res.should.to.be.json;
+        should.exist(res.body);
+        res.body.should.be.deep.eql({
+            "filter": {},
+            "fields": {},
+            "sort": {},
+            "populate": [
+                {
+                    "path": "game",
+                    "select": "name"
+                }
+            ]
+        });
+    });
     it('should call invalid validations param object', async () => {
         let res = await request(app.route.handle)
             .get('/test/validations/param_object?c=1&a[test]=aaa&a[test2]=2');

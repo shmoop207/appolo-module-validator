@@ -1,11 +1,7 @@
 import {define, factory, IFactory, singleton, inject, init, Injector, Util} from '@appolo/inject';
 import {validation, Validator as AValidator} from 'appolo-validator';
 import {IOptions} from "../IOptions";
-// import {
-//     Validator as ClassValidator,
-//     useContainer,
-//    MetadataStorage
-// } from "class-validator";
+
 
 @define()
 @singleton()

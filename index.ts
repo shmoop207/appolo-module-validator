@@ -1,6 +1,12 @@
 "use strict";
 import {ValidationModule} from "./module/validationModule";
-import {validate} from "./module/src/decorators/validateDecorator"
+import {
+    validate,
+    validateModel,
+    validateBody,
+    validateParams,
+    validateQuery
+} from "./module/src/decorators/validateDecorator"
 import {IOptions} from "./module/src/IOptions"
 
 import {
@@ -31,8 +37,8 @@ import {
     FunctionSchema,
     BufferSchema,
     DateSchema,
-    ValidationParams,
-    IConstraintValidateResult,registerConstraint
+    ValidationParams, Validator,
+    IConstraintValidateResult, registerConstraint
 } from "appolo-validator"
 
 export {
@@ -68,6 +74,8 @@ export {
     BufferSchema,
     DateSchema,
     ValidationParams,
-    IConstraintValidateResult
+    IConstraintValidateResult, Validator, validateModel,validateBody,
+    validateParams,
+    validateQuery
 }
 

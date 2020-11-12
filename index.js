@@ -1,10 +1,14 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.DateSchema = exports.BufferSchema = exports.FunctionSchema = exports.ObjectSchema = exports.NumberSchema = exports.BooleanSchema = exports.ArraySchema = exports.AnySchema = exports.StringSchema = exports.func = exports.ref = exports.or = exports.any = exports.when = exports.date = exports.buffer = exports.and = exports.registerSchema = exports.schema = exports.boolean = exports.array = exports.registerConstraint = exports.registerConverter = exports.number = exports.object = exports.string = exports.validate = exports.ValidationModule = void 0;
+exports.validateQuery = exports.validateParams = exports.validateBody = exports.validateModel = exports.Validator = exports.DateSchema = exports.BufferSchema = exports.FunctionSchema = exports.ObjectSchema = exports.NumberSchema = exports.BooleanSchema = exports.ArraySchema = exports.AnySchema = exports.StringSchema = exports.func = exports.ref = exports.or = exports.any = exports.when = exports.date = exports.buffer = exports.and = exports.registerSchema = exports.schema = exports.boolean = exports.array = exports.registerConstraint = exports.registerConverter = exports.number = exports.object = exports.string = exports.validate = exports.ValidationModule = void 0;
 const validationModule_1 = require("./module/validationModule");
 Object.defineProperty(exports, "ValidationModule", { enumerable: true, get: function () { return validationModule_1.ValidationModule; } });
 const validateDecorator_1 = require("./module/src/decorators/validateDecorator");
 Object.defineProperty(exports, "validate", { enumerable: true, get: function () { return validateDecorator_1.validate; } });
+Object.defineProperty(exports, "validateModel", { enumerable: true, get: function () { return validateDecorator_1.validateModel; } });
+Object.defineProperty(exports, "validateBody", { enumerable: true, get: function () { return validateDecorator_1.validateBody; } });
+Object.defineProperty(exports, "validateParams", { enumerable: true, get: function () { return validateDecorator_1.validateParams; } });
+Object.defineProperty(exports, "validateQuery", { enumerable: true, get: function () { return validateDecorator_1.validateQuery; } });
 const appolo_validator_1 = require("appolo-validator");
 Object.defineProperty(exports, "string", { enumerable: true, get: function () { return appolo_validator_1.string; } });
 Object.defineProperty(exports, "object", { enumerable: true, get: function () { return appolo_validator_1.object; } });
@@ -31,5 +35,6 @@ Object.defineProperty(exports, "ObjectSchema", { enumerable: true, get: function
 Object.defineProperty(exports, "FunctionSchema", { enumerable: true, get: function () { return appolo_validator_1.FunctionSchema; } });
 Object.defineProperty(exports, "BufferSchema", { enumerable: true, get: function () { return appolo_validator_1.BufferSchema; } });
 Object.defineProperty(exports, "DateSchema", { enumerable: true, get: function () { return appolo_validator_1.DateSchema; } });
+Object.defineProperty(exports, "Validator", { enumerable: true, get: function () { return appolo_validator_1.Validator; } });
 Object.defineProperty(exports, "registerConstraint", { enumerable: true, get: function () { return appolo_validator_1.registerConstraint; } });
 //# sourceMappingURL=index.js.map
