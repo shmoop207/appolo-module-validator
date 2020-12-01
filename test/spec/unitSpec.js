@@ -84,7 +84,7 @@ describe('validations e2e', () => {
         res.should.to.be.json;
         should.exist(res.body);
         res.body.model.a.test.should.be.eq("aaa");
-        res.body.name.should.be.eq("ValidationController");
+        res.body.name.should.be.eq("NestedvalidationController");
     });
     it('should call validations get all object', async () => {
         let res = await request(app.route.handle)

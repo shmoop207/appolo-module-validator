@@ -63,7 +63,7 @@ export class GetAllModel<T> {
 
 
 @controller()
-export class ValidationController extends Controller {
+export class _validationController extends Controller {
 
     @get("/test/validations/")
     @validate()
