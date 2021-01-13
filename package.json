@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@appolo/core": "^8.0.5",
-    "@appolo/utils": "^8.0.4",
+    "@appolo/utils": "^8.0.7",
     "appolo-validator": "^8.0.2"
   },
   "devDependencies": {
