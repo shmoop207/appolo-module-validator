@@ -71,6 +71,7 @@ export class _validationController extends Controller {
         res.json({working: true, controllerName: this.route.controller, model: model})
     }
 
+
     @validate()
     test2(@query() model: ValidationsDto,req: IRequest, res: IResponse, ) {
         res.json({working: true, controllerName: this.route.controller, model: model})
@@ -92,13 +93,19 @@ export class _validationController extends Controller {
     }
 
     @get('/test/validations/get_all')
-    public async getAll(@validate() @validate() @model() model: GetAllModel<any>, ...rest: any[]) {
+    public async getAll(@validate() @model() model: GetAllModel<any>, ...rest: any[]) {
 
         return model;
     }
 
     @get('/test/validations/get_all2')
     public async getAll2(@validateModel() model: GetAllModel<any>, ...rest: any[]) {
+
+        return model;
+    }
+
+    @get('/test/validations/get_all_noModel')
+    public async getAll3(@validate() model: GetAllModel<any>, ...rest: any[]) {
 
         return model;
     }

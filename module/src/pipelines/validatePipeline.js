@@ -4,6 +4,7 @@ exports.ValidatePipeLine = void 0;
 const tslib_1 = require("tslib");
 const inject_1 = require("@appolo/inject");
 const route_1 = require("@appolo/route");
+const http_1 = require("http");
 const appolo_validator_1 = require("appolo-validator");
 let ValidatePipeLine = class ValidatePipeLine {
     async run(context, next) {
@@ -25,6 +26,9 @@ let ValidatePipeLine = class ValidatePipeLine {
         return next();
     }
     async _validateArg(schema, type, value, options, index, context) {
+        if (value instanceof http_1.IncomingMessage) {
+            value = Object.assign({}, value.body || {}, value.query || {}, value.params || {});
+        }
         let result = await this.validator.validate(schema, value, options);
         if (result.errors.length) {
             throw new route_1.BadRequestError("failed to validate", { errors: result.errors.map(msg => msg.toString()) });

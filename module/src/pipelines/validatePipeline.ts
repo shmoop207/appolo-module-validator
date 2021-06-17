@@ -1,6 +1,7 @@
 import {define,  singleton, inject, init} from '@appolo/inject';
 import { IPipeline, PipelineContext} from '@appolo/engine';
-import { BadRequestError} from '@appolo/route';
+import { BadRequestError,IRequest} from '@appolo/route';
+import { IncomingMessage} from 'http';
 import {IOptions, ValidateOptions} from "../IOptions";
 import {Validator, AnySchema, ValidationErrorsError} from "appolo-validator";
 
@@ -40,6 +41,10 @@ export class ValidatePipeLine implements IPipeline {
     }
 
     private async _validateArg(schema: AnySchema, type: any, value: any, options: ValidateOptions, index: number, context: PipelineContext): Promise<any> {
+
+        if(value instanceof IncomingMessage){
+            value = Object.assign({}, (value as IRequest ).body || {}, (value as IRequest ).query || {}, (value as IRequest ).params || {});
+        }
 
         let result = await this.validator.validate(schema, value, options);
 

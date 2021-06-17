@@ -91,6 +91,9 @@ let _validationController = class _validationController extends route_1.Controll
     async getAll2(model, ...rest) {
         return model;
     }
+    async getAll3(model, ...rest) {
+        return model;
+    }
 };
 tslib_1.__decorate([
     route_1.get("/test/validations/"),
@@ -125,7 +128,7 @@ tslib_1.__decorate([
 ], _validationController.prototype, "validationObject", null);
 tslib_1.__decorate([
     route_1.get('/test/validations/get_all'),
-    tslib_1.__param(0, index_1.validate()), tslib_1.__param(0, index_1.validate()), tslib_1.__param(0, route_1.model()),
+    tslib_1.__param(0, index_1.validate()), tslib_1.__param(0, route_1.model()),
     tslib_1.__metadata("design:type", Function),
     tslib_1.__metadata("design:paramtypes", [GetAllModel, Object]),
     tslib_1.__metadata("design:returntype", Promise)
@@ -137,6 +140,13 @@ tslib_1.__decorate([
     tslib_1.__metadata("design:paramtypes", [GetAllModel, Object]),
     tslib_1.__metadata("design:returntype", Promise)
 ], _validationController.prototype, "getAll2", null);
+tslib_1.__decorate([
+    route_1.get('/test/validations/get_all_noModel'),
+    tslib_1.__param(0, index_1.validate()),
+    tslib_1.__metadata("design:type", Function),
+    tslib_1.__metadata("design:paramtypes", [GetAllModel, Object]),
+    tslib_1.__metadata("design:returntype", Promise)
+], _validationController.prototype, "getAll3", null);
 _validationController = tslib_1.__decorate([
     route_1.controller()
 ], _validationController);
