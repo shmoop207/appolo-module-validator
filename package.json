@@ -1,6 +1,6 @@
 {
   "name": "@appolo/validator",
-  "version": "8.0.3",
+  "version": "8.0.4",
   "description": "appolo validator module",
   "keywords": [
     "appolo"
@@ -14,7 +14,7 @@
   "dependencies": {
     "@appolo/core": "^8.0.5",
     "@appolo/utils": "^8.0.4",
-    "appolo-validator": "^8.0.2"
+    "appolo-validator": "^8.0.4"
   },
   "devDependencies": {
     "@types/chai": "^4.2.14",
